@@ -1,0 +1,16 @@
+Required modules:
+- @emotion-react
+- @emotion-styled
+- @mui/icons-material
+- @mui/material
+- @testing-library/jest-dom
+- @testing-library/react
+- @testing-library/user-event
+- bootstrap
+- react-bootstrap
+- react-cookie
+- react-dom
+- react-router-dom
+- react-scripts
+- react
+- web-vitals
