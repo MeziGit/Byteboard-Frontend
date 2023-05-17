@@ -6,7 +6,7 @@ function AllUsers() {
 
     const callGetAllUsers = async () => {
 
-        const response = await fetch("http://localhost:1339/users",
+        const response = await fetch(process.env.REACT_APP_BACKEND + "/users",
             { method: "GET" });
 
         const result = await response.json();

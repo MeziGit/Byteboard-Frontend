@@ -16,7 +16,7 @@ function PasswordChangeForm() {
         try {
 
 
-            const res = await fetch("http://localhost:1339/session/getUsername",
+            const res = await fetch(process.env.REACT_APP_BACKEND + "/session/getUsername",
                 { method: "GET", credentials: "include" });
 
             if (res.status !== 200) throw new Error("User not logged in")
@@ -40,7 +40,7 @@ function PasswordChangeForm() {
                 }
             }
 
-            const response = await fetch("http://localhost:1339/users", requestOptions)
+            const response = await fetch(process.env.REACT_APP_BACKEND + "/users", requestOptions)
 
             if (response.status === 200) {
                 alert("Password changed")
