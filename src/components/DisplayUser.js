@@ -7,7 +7,7 @@ import { Home } from "./Home"
 function DisplayUser(props) {
 
     const navigate = useNavigate()
-
+   
     return (
 
         <>
@@ -15,7 +15,7 @@ function DisplayUser(props) {
             {/* Display the user */}
 
             <Card 
-                image={process.env.PUBLIC_URL + "/images/Default_Pfp.png"}
+                image={props.user.profilePicture}
                 children={
                     <>
 <a href={`profile?${props.user.username}`} >
