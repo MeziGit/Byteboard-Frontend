@@ -3,7 +3,7 @@ import './App.css'
 
 
 function DisplayUser(props) {
-
+    const user = props.user;
 
     return (
 
@@ -12,10 +12,9 @@ function DisplayUser(props) {
             {/* Display the user */}
 
             <Card 
-                image={process.env.PUBLIC_URL + "/images/" + props.user.name + ".jpg"}
+                image={props.user.profilePicture}
                 children={
                     <>
-
                         {props.heading}
                         {props.user.username && <h1>Name: {props.user.username}</h1>}
                         {props.user.email && <h1>Email {props.user.email}</h1>}
