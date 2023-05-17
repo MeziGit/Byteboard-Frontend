@@ -36,7 +36,7 @@ if(isLoggedIn)
 else
 {
 
-            const response = await fetch(process.env.REACT_APP_BACKEND + "/users/register", requestOptions)
+            const response = await fetch("http://localhost:1339/users/register", requestOptions)
 
             if (response.status === 200) {
 
@@ -46,13 +46,14 @@ else
             }
             else {
 
-                alert("Invalid register, try agian")
+                let result = await response.json()
+                alert(result.errorMessage)
 
             }
         }
         }
         catch (error) {
-            alert("an error occured try again")
+            alert(error.message)
         }
     }
 

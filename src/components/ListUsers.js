@@ -9,15 +9,14 @@ try{
     return(
         <div>
 
-            <ul>
 
                 {users.map((user) =>(
-                    <li key={user._id}>
+                   
                         <DisplayUser user={user}/>
 
-                    </li>
+              
                 ))}
-            </ul>
+            
         </div>
     )
                 }

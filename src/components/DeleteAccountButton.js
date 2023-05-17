@@ -16,14 +16,14 @@ function DeleteAccountButton() {
             }
 
 
-            const res = await fetch(process.env.REACT_APP_BACKEND + "/session/getUsername",
+            const res = await fetch("http://localhost:1339/session/getUsername",
                 { method: "GET", credentials: "include" });
 
             if (res.status !== 200) throw new Error("User not logged in")
 
             const username = await res.text();
 
-            const response = await fetch(process.env.REACT_APP_BACKEND + "/session/logout", requestOptions)
+            const response = await fetch("http://localhost:1339/session/logout", requestOptions)
 
             const password = prompt("Please enter your current password")
 let res2
@@ -46,7 +46,7 @@ let res2
                     }
                 }
 
-              res2 =    await fetch(process.env.REACT_APP_BACKEND + "/users", requestOptions)
+              res2 =    await fetch("http://localhost:1339/users", requestOptions)
             }
 
 

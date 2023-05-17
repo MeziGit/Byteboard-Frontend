@@ -25,7 +25,7 @@ function LoginForm() {
                 }
             }
 
-            const response = await fetch(process.env.REACT_APP_BACKEND + "/session/login",requestOptions)
+            const response = await fetch("http://localhost:1339/session/login",requestOptions)
 
             if(response.status === 200)
             {
@@ -36,13 +36,14 @@ function LoginForm() {
             else
             {
                 setIsLoggedIn(false)
-                alert("Invalid login, try agian")
+                let result = await response.json()
+                alert(result.errorMessage)
 
             }
         }
         catch(error)
         {
-            alert("an error occured try again")
+            alert(error.message)
         }
 }
 

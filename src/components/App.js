@@ -10,6 +10,7 @@ import { createContext } from 'react';
 import { useState } from 'react';
 import {Home} from "./Home"
 import Settings from '../pages/Settings';
+import Profile from '../pages/Profile';
 
 
 const LoggedInContext = createContext({
@@ -39,6 +40,7 @@ function App() {
           <Route path="systemerror" element={<SystemError/>}/>
           <Route path="home" element={<Home/>}/>
           <Route path="settings" element={<Settings/>}/>
+          <Route path="profile" element={<Profile/>}/>
         </Route>
       </Routes>
 
