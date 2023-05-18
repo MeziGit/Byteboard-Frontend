@@ -5,6 +5,7 @@
   --font-primary: 'Bakbak-One';
   --font-secondary: 'DM-Sans';
   --outline-width-primary: 8px;
+  --outline-offset-primary: -4px;
 }
 
 @font-face {
@@ -177,6 +178,37 @@ button {
   margin-left: 2em;
 
 }
+
+.post-summary-container {
+  text-align: left;
+  display: inline;
+  padding-left: 20rem;
+  padding-right: 20rem;
+  padding-top: 1.5rem;
+  padding-bottom: 0.6rem;
+
+  outline-width: var(--outline-width-primary);
+  outline-color: var(--colour-secondary);
+  outline-style: solid;
+  outline-offset: var(--outline-offset-primary);
+}
+
+.post-summary {
+  display: inline !important;
+  padding-right: 1rem;
+}
+
+.post-summary-item {
+  color: var(--colour-tertiary);
+  font-family: var(--font-secondary);
+  font-size: 1.2rem;
+}
+
+.post-summary-desc {
+  color: var(--colour-tertiary);
+  padding-top: 0.4rem;
+}
+
 
 .home {
   display: flex;
