@@ -1,7 +1,7 @@
 import { useContext, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { LoggedInContext } from "./App";
-
+import "./App.css"
 
 function PostForm() {
     const [title, setTitle] = useState(null)
@@ -62,7 +62,7 @@ function PostForm() {
 
     return (
 
-        <form onSubmit={handleSubmit} title="Post">
+        <form onSubmit={handleSubmit} className="post" title="Post">
           <h1>POST</h1>
             <div>
 <input type="checkbox" id="vehicle1" value="Programming"/>
