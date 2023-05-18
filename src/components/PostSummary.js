@@ -103,8 +103,8 @@ function PostSummary({post}) {
             <h4 className="post-summary post-summary-item">{dateCreated.getFullYear()}-{getNumber(dateCreated.getMonth() + 1)}-{getNumber(dateCreated.getDate())}</h4>
             <p className="post-summary-desc">{content}</p>
 
-            <button onClick={handleLike}>Like</button>
-            <button onClick={handleDislike}>Dislike</button>
+            <button type="button" class="btn btn-outline-success"  onClick={handleLike}>Like</button>
+            <button type="button" class="btn btn-danger" onClick={handleDislike}>Dislike</button>
 
             <AllComments id={post._id} />
             <CommentForm id={post._id} />

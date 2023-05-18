@@ -2,6 +2,7 @@ import { useContext, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { LoggedInContext } from "./App";
 import {  Button } from "react-bootstrap";
+import DeleteIcon from '@mui/icons-material/Delete';
 
 function DeleteAccountButton() {
     const [isLoggedIn, setIsLoggedIn] = useContext(LoggedInContext)
@@ -71,7 +72,8 @@ let res2
 
 
     return (
-        <Button variant="primary" size="md" onClick={performDelete}>
+       
+        <Button size="md" class="btn btn-danger" onClick={performDelete}>
             Delete Account
         </Button>
     )

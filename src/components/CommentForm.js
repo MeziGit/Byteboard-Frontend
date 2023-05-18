@@ -48,7 +48,7 @@ function CommentForm({id}) {
             <input type="text" name="comment" placeholder="Add Comment..." onChange={(e) => setComment(e.target.value)} />
 
 
-            {comment && <button type="submit" onClick={handleSubmit}>Submit</button>}
+            {comment && <button type="submit" class="btn btn-primary" onClick={handleSubmit}>Submit</button>}
         </form>
     )
 }
