@@ -15,7 +15,7 @@ const UserProfile = () => {
 
 
   const fetchData = () => {
-    fetch(`http://localhost:1339/users/username/${userName}`)
+    fetch(`http://localhost:1339/users/usernames/${userName}`)
       .then(response => {
         return response.json()
       })
