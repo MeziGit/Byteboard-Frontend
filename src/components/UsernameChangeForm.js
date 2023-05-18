@@ -21,16 +21,12 @@ function UsernameChangeForm() {
 
             if (res.status !== 200) throw new Error("You are not logged in!")
 
-            const username = await res.text();
-
-
             const password = prompt("Please enter your current password")
 
             const requestOptions = {
                 method: "PUT",
                 credentials: "include",
                 body: JSON.stringify({
-                    usernameToUpdate: username,
                     username:username,
                     currentPassword: password
                 }),

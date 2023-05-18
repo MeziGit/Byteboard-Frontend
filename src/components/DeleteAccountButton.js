@@ -1,62 +1,46 @@
 import { useContext, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { LoggedInContext } from "./App";
-import {  Button } from "react-bootstrap";
-import DeleteIcon from '@mui/icons-material/Delete';
+import { Button } from "react-bootstrap";
 
 function DeleteAccountButton() {
-    const [isLoggedIn, setIsLoggedIn] = useContext(LoggedInContext)
+
     const navigate = useNavigate()
 
 
     const performDelete = async () => {
         try {
-            const requestOptions = {
-                method: "GET",
-                credentials: "include",
-            }
 
 
             const res = await fetch("http://localhost:1339/session/getUsername",
                 { method: "GET", credentials: "include" });
 
-            if (res.status !== 200) throw new Error("User not logged in")
-
-            const username = await res.text();
-
-            const response = await fetch("http://localhost:1339/session/logout", requestOptions)
+            if (res.status !== 200) throw new Error("You are not logged in!")
 
             const password = prompt("Please enter your current password")
-let res2
 
-            if (response.status === 200) {
-                
-                setIsLoggedIn(false)
 
-                navigate("/")
 
-                const requestOptions = {
-                    method: "DELETE",
-                    credentials: "include",
-                    body: JSON.stringify({
-                        usernameToDelete: username,
-                        currentPassword: password
-                    }),
-                    headers: {
-                        "Content-type": "application/json; charset=UTF-8"
-                    }
+            const requestOptions = {
+                method: "DELETE",
+                credentials: "include",
+                body: JSON.stringify({
+                    currentPassword: password
+                }),
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8"
                 }
-
-              res2 =    await fetch("http://localhost:1339/users", requestOptions)
             }
 
+            const res2 = await fetch("http://localhost:1339/users", requestOptions)
 
-            if(res2.status==200)
-            {
+
+
+            if (res2.status === 200) {
                 alert("Sad to see you leave, leave a feedback on how we can improve our website")
+                navigate("/")
             }
-            else
-            {
+            else {
                 throw new Error("Incorrect password, will log out out of this account")
             }
 
@@ -72,7 +56,7 @@ let res2
 
 
     return (
-       
+
         <Button size="md" class="btn btn-danger" onClick={performDelete}>
             Delete Account
         </Button>
