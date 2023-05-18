@@ -11,6 +11,7 @@ import { useState } from 'react';
 import {Home} from "./Home"
 import Settings from '../pages/Settings';
 import UserProfile from '../pages/UserProfile';
+import Profile from '../pages/Profile';
 import Jobs from '../pages/Jobs';
 import Forum from './Pages/Forum';
 
@@ -44,6 +45,7 @@ function App() {
           <Route path="jobs" element={<Jobs/>}/>
           <Route path="settings" element={<Settings/>}/>
           <Route path="userprofile" element={<UserProfile/>}/>
+          <Route path="profile" element={<Profile/>}/>
           <Route path="forum" element={<Forum/>}/>
         </Route>
       </Routes>

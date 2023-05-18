@@ -37,6 +37,7 @@ function Header() {
                 <NavButton to="/contact" label="Contact Us" />
                 
                 <NavButton to="/jobs" label="Jobs" />
+                <NavButton to="/profile" label="Profile" />
                 <NavButton to="/settings" label="Settings" />
 
             

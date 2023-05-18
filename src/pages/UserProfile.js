@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react';
 
 
 
-const Profile = () => {
+const UserProfile = () => {
   const [user, setUser] = useState({})
 
   const url = window.location.href
@@ -48,4 +48,4 @@ const Profile = () => {
   )
 }
 
-export default Profile
+export default UserProfile
