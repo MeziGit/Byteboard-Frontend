@@ -18,15 +18,15 @@ import LogoutButton from "./LogoutButton";
  */
 function Header() {
 
-    const [isLoggedIn, setIsLoggedIn] = useContext(LoggedInContext);
 
     
     return (
 
+     
         <div>
             
-              <h1>{isLoggedIn ? "Welcome" : "Please login"}</h1>
 
+          <br/>
             <Navbar id="header">
                 <img id="byteboard-title-image" src={process.env.PUBLIC_URL + "/images/title.png"} alt="title" />
                 <NavButton to="/" label="Login/Register" />
