@@ -1,3 +1,4 @@
+import { AllPostsFromUser } from "../components/AllPostsFromUser";
 import { DisplayUser } from "../components/DisplayUser"
 import React, { useEffect, useState } from 'react';
 
@@ -34,8 +35,12 @@ const Profile = () => {
 <h1>Description</h1>
 <h1>{user.description}</h1>
 <h1>Reputation: {user.reputation}</h1>
+
+
           </ul>
         )}
+
+<AllPostsFromUser user={user}/>
       </div>
     )
   }
