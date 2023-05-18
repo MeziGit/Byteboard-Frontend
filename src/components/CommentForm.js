@@ -44,7 +44,7 @@ function CommentForm({id}) {
 
     return (
         <form onSubmit={handleSubmit}>
-            <label htmlFor="comment">Comment </label>
+            
             <input type="text" name="comment" placeholder="Add Comment..." onChange={(e) => setComment(e.target.value)} />
 
 
