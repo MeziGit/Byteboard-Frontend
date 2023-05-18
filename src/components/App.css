@@ -177,6 +177,7 @@ button {
 
 }
 
+/*===================== FORUM STYLES =====================*/
 .post-summary-container {
   text-align: left;
   display: inline;
@@ -206,6 +207,7 @@ button {
   color: var(--colour-tertiary);
   padding-top: 0.4rem;
 }
+/*======== FORUM STYLES END ========*/
 
 
 .home {
