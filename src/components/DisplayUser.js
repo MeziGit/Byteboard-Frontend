@@ -28,8 +28,6 @@ let sendMailUrl = `mailto:“${props.user.email}”`
                         <a href={sendMailUrl}>
                         {props.user.email && <h2>{props.user.email}</h2>}
                         </a>
-                        <h2>Description:</h2><br/>
-                        {props.user.description && <h3>{props.user.description}</h3>}
 
 
                     </>
