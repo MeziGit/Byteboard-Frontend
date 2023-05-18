@@ -3,23 +3,23 @@ import { useEffect, useState } from "react"
 
 function AllPostsFromUser(props) {
 
-    try
-    {
-
-    
     const [posts, setPosts] = useState([])
 
 
     const callGetAllPosts = async (event) => {
-        event.preventDefault()
 
-        const response = await fetch(`http://localhost:1339/posts/users/${props.user._id}`)
+        try {
+            event.preventDefault()
 
-        const result = await response.json();
+            const response = await fetch(`http://localhost:1339/posts/users/${props.user._id}`)
 
-        setPosts(result)
+            const result = await response.json();
 
-
+            setPosts(result)
+        }
+        catch (error) {
+            alert(error.message)
+        }
     }
 
     return (
@@ -32,11 +32,9 @@ function AllPostsFromUser(props) {
             <ListPosts posts={posts} />
         </>
     )
-    }
-    catch(error)
-    {
-    }
 }
+
+
 
 export { AllPostsFromUser }
 
