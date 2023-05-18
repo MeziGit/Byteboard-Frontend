@@ -22,12 +22,14 @@ function AllPostsFromUser(props) {
         }
     }
 
+    
+
     return (
 
         <>
 
 
-            <button onClick={callGetAllPosts}>get posts</button>
+            <button onClick={callGetAllPosts}>See Posts</button>
 
             <ListPosts posts={posts} />
         </>
