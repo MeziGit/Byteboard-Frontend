@@ -38,7 +38,7 @@ function Header() {
                 
                 <NavButton to="/jobs" label="Jobs" />
                 <NavButton to="/settings" label="Settings" />
-                <NavButton to="/profile" label="Profile"/>
+
             
                
                <LogoutButton/>

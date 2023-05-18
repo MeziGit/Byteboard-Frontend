@@ -10,7 +10,7 @@ import { createContext } from 'react';
 import { useState } from 'react';
 import {Home} from "./Home"
 import Settings from '../pages/Settings';
-import Profile from '../pages/Profile';
+import UserProfile from '../pages/UserProfile';
 import Jobs from '../pages/Jobs';
 import Forum from './Pages/Forum';
 
@@ -43,7 +43,7 @@ function App() {
           <Route path="home" element={<Home/>}/>
           <Route path="jobs" element={<Jobs/>}/>
           <Route path="settings" element={<Settings/>}/>
-          <Route path="profile" element={<Profile/>}/>
+          <Route path="userprofile" element={<UserProfile/>}/>
           <Route path="forum" element={<Forum/>}/>
         </Route>
       </Routes>
