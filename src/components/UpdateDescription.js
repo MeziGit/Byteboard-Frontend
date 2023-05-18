@@ -1,5 +1,5 @@
 import {  useState } from "react"
-
+import "./App.css"
 
 function UpdateDescriptionForm() {
     const [description,setDescription] = useState(null)
@@ -57,12 +57,14 @@ function UpdateDescriptionForm() {
 
 
     return (
-        <form onSubmit={handleSubmit}>
-            <label htmlFor="description">Update Description: </label>
-            <input type="text" name="description" placeholder="Description..." onChange={(e) => setDescription(e.target.value)} />
+        <form onSubmit={handleSubmit} className="description">
+            <br/>
+            <label><h3>Update Description</h3></label>
+<br/><br/>
+            <input type="text" name="description" placeholder="Update Description..." onChange={(e) => setDescription(e.target.value)} />
 
-
-            {description && <button type="submit">Update</button>}
+<br/><br/>
+            {description && <button type="submit" class="btn btn-light">Update</button>}
         </form>
     )
 }
