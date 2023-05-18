@@ -19,7 +19,7 @@ function MainLayout() {
     <ErrorBoundary fallback={SystemError("Unexpected error")}>
       {state && state.errorMessage && <Alert variant="danger">{state.errorMessage}</Alert>}
       <Header />
-      <p className="menuDisplay"><Outlet /></p>
+      <div className="menuDisplay"><Outlet /></div>
       <Footer />
     </ErrorBoundary>
   </div>
