@@ -1,8 +1,22 @@
 :root {
-  --colour-primary: rgb(0, 150, 230);
+  --colour-primary: rgb( 0, 150, 230);
   --colour-secondary: rgb(0, 50, 110);
+  --colour-tertiary: rgb(90, 130, 155);
+  --font-primary: 'Bakbak-One';
+  --font-secondary: 'DM-Sans';
   --outline-width-primary: 8px;
 }
+
+@font-face {
+  font-family: DM-Sans;
+  src: url('../resources/DM_Sans/DMSans-Regular.ttf');
+}
+
+@font-face {
+  font-family: Bakbak-One;
+  src: url('../resources/Bakbak_One/BakbakOne-Regular.ttf');
+}
+
 
 .App {
   text-align: center;
@@ -152,4 +166,37 @@ button {
 .card-img{
   max-height: 100px;
   max-width: 100px;
+}
+
+
+p {
+  color: var(--colour-secondary);
+  font-family: var(--font-secondary);
+}
+
+h1 {
+  color: var(--colour-secondary);
+  font-family: var(--font-primary);
+  font-size: 4.5rem !important;
+}
+
+h2 {
+  color: var(--colour-secondary);
+  font-family: var(--font-primary);
+  font-size: 2.5rem !important;
+}
+
+h3 {
+  color: var(--colour-secondary);
+  font-family: var(--font-primary);
+}
+
+h4 {
+  color: var(--colour-secondary);
+  font-family: var(--font-primary);
+}
+
+div {
+  display: grid;
+  text-align: center;
 }
