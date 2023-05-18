@@ -8,7 +8,7 @@ import { AllComments } from "./AllComments"
 
 async function handleVote(props, vote) {
     try {
-        alert(props.post._id)
+
         const requestOptions = {
             method: "PUT",
             credentials: "include",
@@ -48,73 +48,13 @@ function DisplayPost(props) {
     const handleLike = async (event) => {
         event.preventDefault()
 
-        try {
-            alert(props.post._id)
-            const requestOptions = {
-                method: "PUT",
-                credentials: "include",
-                body: JSON.stringify({
-                    postId: props.post._id,
-                    vote: 1
-                }),
-                headers: {
-                    "Content-type": "application/json; charset=UTF-8"
-                }
-            }
-
-            const response = await fetch("http://localhost:1339/posts/vote", requestOptions)
-
-            if (response.status === 200) {
-                alert("Vote submitted")
-
-            }
-            else {
-
-                let result = await response.json()
-                alert(result.errorMessage)
-
-            }
-
-        } catch (error) {
-
-            alert(error.message)
-        }
+        await handleVote(props, 1)
     }
 
     const handleDislike = async (event) => {
         event.preventDefault()
 
-        try {
-            alert(props.post._id)
-            const requestOptions = {
-                method: "PUT",
-                credentials: "include",
-                body: JSON.stringify({
-                    postId: props.post._id,
-                    vote: -1
-                }),
-                headers: {
-                    "Content-type": "application/json; charset=UTF-8"
-                }
-            }
-
-            const response = await fetch("http://localhost:1339/posts/vote", requestOptions)
-
-            if (response.status === 200) {
-                alert("Vote submitted")
-
-            }
-            else {
-
-                let result = await response.json()
-                alert(result.errorMessage)
-
-            }
-
-        } catch (error) {
-
-            alert(error.message)
-        }
+        await handleVote(props, -1)
     }
 
 
