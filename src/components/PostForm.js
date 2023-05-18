@@ -66,12 +66,20 @@ function PostForm() {
           <h1>POST</h1>
             <div>
 <input type="checkbox" id="vehicle1" value="Programming"/>
-<label for="vehicle1" > Programming</label><br/>
+<label for="vehicle1" > Programming</label>
 <input type="checkbox" id="vehicle2" value="Hardware"/>
-<label for="vehicle2"> Hardware</label><br/>
+<label for="vehicle2"> Hardware</label>
+
+<input type="checkbox" id="vehicle3" value="Virtual Machines"/>
+<label for="vehicle3"> Virtual Machines</label>
+
+<input type="checkbox" id="vehicle4" value="Hardware"/>
+<label for="vehicle4"> Operating Systems</label>
+<input type="checkbox" id="vehicle5" value="Other"/>
+<label for="vehicle5">Other</label>
 </div>
-<br />
-            <label htmlFor="title">Title: </label>
+
+            <label htmlFor="title">Title: </label><br/>
             <input type="text" name="title" placeholder="Title..." onChange={(e) => setTitle(e.target.value)} />
             <br />
 
@@ -79,8 +87,8 @@ function PostForm() {
             <input type="text" name="title" placeholder="Content..." onChange={(e) => setContent(e.target.value)} />
             <br />
 
-
-            <button type="submit">Create</button>
+<br/>
+            <button type="button" class="btn btn-primary">Create</button>
         </form>
     )
 }
