@@ -21,7 +21,7 @@ function EmailChangeForm() {
             const res = await fetch("http://localhost:1339/session/getUsername",
                 { method: "GET", credentials: "include" });
 
-            if (res.status !== 200) throw new Error("User not logged in")
+            if (res.status !== 200) throw new Error("You are not logged in!")
 
             const username = await res.text();
 
