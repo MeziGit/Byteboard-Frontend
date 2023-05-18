@@ -34,7 +34,7 @@ function Menu({ setDisplay }) {
                   <ColorButton variant="secondary" size="lg" onClick={()=>setDisplay(menuItemLogin)}>Login</ColorButton>
                   <p />
                   <ColorButton variant="primary" size="lg" onClick={()=>setDisplay(menuItemRegister)}>Register</ColorButton>
-                  
+                 <br/> 
             </div>
       );
 

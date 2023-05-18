@@ -173,8 +173,18 @@ button {
   outline-color: rgb(0, 50, 110);
   max-width: 500px;
   max-height: 500px;
-  margin-left: 2em;
 
+
+}
+
+.login{
+  background-color: rgb(0, 150, 230);
+  outline: 10px solid;
+  outline-color: rgb(0, 50, 110);
+  max-width: 200px;
+  max-height: 400px;
+  margin-left: 20em;
+  margin-bottom: 3em;
 }
 
 /*===================== FORUM STYLES =====================*/

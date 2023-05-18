@@ -1,6 +1,7 @@
 import { useContext, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { LoggedInContext } from "./App";
+import "./App.css"
 
 
 function RegisterForm() {
@@ -60,7 +61,7 @@ else
 
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="login">
             <label htmlFor="username">Username</label>
             <input type="text" name="username" placeholder="Username..." onChange={(e) => setUsername(e.target.value)} />
             <br />
@@ -74,9 +75,10 @@ else
             <input type="email" name="email" placeholder="Email..." onChange={(e) => setEmail(e.target.value)} />
 
 
-            <br />
-
-            {username && password && email && <button type="submit">Register</button>}
+            
+            <br/><br/>
+            {username && password && email && <button type="submit" class="btn btn-success">Register</button>}
+            <br/><br/>
         </form>
     )
 }
