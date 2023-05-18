@@ -1,57 +1,26 @@
-import { useState } from "react"
+import Card from "./Card"
+import './App.css'
+import { useNavigate } from "react-router-dom"
+import { Home } from "./Home"
+import { CommentForm } from "./CommentForm"
+import { ListCommentsPosts } from "./ListCommentsPost"
 
 
-function DisplayComment({id}) {
+function DisplayPost(props) {
 
-
-    const [comment, setComment] = useState(null)
-
-    const handleSubmit = async (event) => {
-        try {
-            event.preventDefault()
-alert(id)
-            const requestOptions = {
-                method: "POST",
-                credentials: "include",
-                body: JSON.stringify({
-                    content: comment,
-                    postId: id
-                }),
-                headers: {
-                    "Content-type": "application/json; charset=UTF-8"
-                }
-            }
-
-
-            const response = await fetch("http://localhost:1339/posts/comments", requestOptions)
-
-            if (response.status === 200) {
-                alert("Comment submitted")
-
-            }
-            else {
-
-                let result = await response.json()
-                alert(result.errorMessage)
-
-            }
-        }
-        catch (error) {
-            alert(error.message)
-        }
-
-    }
+    const navigate = useNavigate()
 
     return (
-        <form onSubmit={handleSubmit}>
-            <label htmlFor="comment">Comment </label>
-            <input type="text" name="comment" placeholder="Add Comment..." onChange={(e) => setComment(e.target.value)} />
+
+        <>
 
 
-            {comment && <button type="submit" onClick={handleSubmit}>Submit</button>}
-        </form>
+
+
+            
+
+        </>
     )
 }
 
-
-export { DisplayComment }
+export { DisplayPost }
