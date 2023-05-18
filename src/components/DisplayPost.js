@@ -43,7 +43,7 @@ async function handleVote(props, vote) {
 
 function DisplayPost(props) {
 
-    const navigate = useNavigate()
+
 
     const handleLike = async (event) => {
         event.preventDefault()
