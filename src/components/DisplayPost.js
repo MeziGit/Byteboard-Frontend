@@ -43,7 +43,7 @@ async function handleVote(props, vote) {
 
 function DisplayPost(props) {
 
-    const navigate = useNavigate()
+
 
     const handleLike = async (event) => {
         event.preventDefault()
@@ -64,14 +64,14 @@ function DisplayPost(props) {
 
             {/* Display the post */}
 
-            <Card
+            <Card height="500em" width="500em"
                 children={
                     <>
                         <a>
 
                             {props.heading}
-                            {props.post.postTitle && <h1>Title: {props.post.postTitle}</h1>}
-                            {props.post.postContent && <h1>Content {props.post.postContent}</h1>}
+                            {props.post.postTitle && <h2>Title: {props.post.postTitle}</h2>}
+                            {props.post.postContent && <h3>Content: <br/> {props.post.postContent}</h3>}
 
 
                             <button onClick={handleLike}>Like</button>

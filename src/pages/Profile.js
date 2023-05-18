@@ -1,48 +1,69 @@
+import { useNavigate } from "react-router-dom";
 import { AllPostsFromUser } from "../components/AllPostsFromUser";
 import { DisplayUser } from "../components/DisplayUser"
 import React, { useEffect, useState } from 'react';
+import { UpdateDescriptionForm } from "../components/UpdateDescription";
 
 
 
 
 const Profile = () => {
-    const [user, setUser] = useState({})
-  
-    const url = window.location.href
 
-    const userName = url.split("?")[1]
+  const [user, setUser] = useState(null)
+  const navigate = useNavigate()
 
-    const fetchData = () => {
-      fetch(`http://localhost:1339/users/usernames/${userName}`)
-        .then(response => {
-          return response.json()
-        })
-        .then(data => {
-          setUser(data)
-        })
+
+  const getUserProfile = async () => {
+
+
+    const res = await fetch("http://localhost:1339/session/getUsername",
+      { method: "GET", credentials: "include" });
+
+
+    if (res.status !== 200) {
+      navigate("/", { state: { errorMessage: "You are not logged in" } })
     }
-  
-    useEffect(() => {
-      fetchData()
-    }, [])
-  
-    return (
-      <div>
-        {user && (
-          <ul>
-<DisplayUser user={user}/>
 
-<h1>Description</h1>
-<h1>{user.description}</h1>
-<h1>Reputation: {user.reputation}</h1>
+    const username = await res.text();
 
+    const response = await fetch(`http://localhost:1339/users/${username}`)
 
-          </ul>
-        )}
+    let result = await response.json()
 
-<AllPostsFromUser user={user}/>
-      </div>
-    )
+    setUser(result)
+
   }
+
+
+
+
+  useEffect(() => {
+    getUserProfile()
+  }, [])
+
+
+
+  return (
+    <div>
+      {user && (
+        <ul>
+          <DisplayUser user={user} />
+
+          <h1>Description</h1>
+          <h1>{user.description}</h1>
+          <h1>Reputation: {user.reputation}</h1>
+
+
+        </ul>
+      )}
+
+<UpdateDescriptionForm/>
+      {user && <AllPostsFromUser user={user} />}
+
+    </div>
+  )
+
+
+}
 
 export default Profile
