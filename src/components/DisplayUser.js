@@ -8,6 +8,8 @@ function DisplayUser(props) {
 
     const navigate = useNavigate()
 
+let sendMailUrl = `mailto:“${props.user.email}”`
+
     return (
 
         <>
@@ -22,8 +24,12 @@ function DisplayUser(props) {
 
 
                         {props.heading}
-                        {props.user.username && <h1>Name: {props.user.username}</h1>}
-                        {props.user.email && <h1>Email {props.user.email}</h1>}
+                        {props.user.username && <h1>{props.user.username}</h1>}
+                        <a href={sendMailUrl}>
+                        {props.user.email && <h2>{props.user.email}</h2>}
+                        </a>
+                        <h2>Description:</h2><br/>
+                        {props.user.description && <h3>{props.user.description}</h3>}
 
 
                     </>
