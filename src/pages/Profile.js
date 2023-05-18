@@ -16,7 +16,7 @@ const Profile = () => {
   const getUserProfile = async () => {
 
 
-    const res = await fetch("http://localhost:1339/session/getUsername",
+    const res = await fetch(process.env.REACT_APP_PUBLIC_URL + "/session/getUsername",
       { method: "GET", credentials: "include" });
 
 
@@ -26,7 +26,7 @@ const Profile = () => {
 
     const username = await res.text();
 
-    const response = await fetch(`http://localhost:1339/users/${username}`)
+    const response = await fetch(`${process.env.REACT_APP_PUBLIC_URL}/users/${username}`)
 
     let result = await response.json()
 
