@@ -1,5 +1,5 @@
 import { ListCommentsPost } from  "./ListCommentsPost"
-import { useState } from "react";
+import { useState,useEffect } from "react";
 
 function AllComments({id}) {
     const [comments,setComments] = useState([])
@@ -14,12 +14,13 @@ function AllComments({id}) {
         setComments(result)
     };
 
+    useEffect(() => {
+        callGetAllComments()
+      }, [])
+
     return (
 
         <>
-
-            <button onClick={callGetAllComments}>See Comments</button>
-
             <ListCommentsPost comments={comments} />
         </>
     )
