@@ -27,7 +27,7 @@ if(comments[i] == null)
                    
                 
                    
-                    <h2>{comment.content}</h2>
+                    <h2>user: -{comment.content}</h2>
                     
                    
 
