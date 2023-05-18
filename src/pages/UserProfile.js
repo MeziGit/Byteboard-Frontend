@@ -1,3 +1,4 @@
+import { useLocation } from "react-router-dom";
 import { AllPostsFromUser } from "../components/AllPostsFromUser";
 import { DisplayUser } from "../components/DisplayUser"
 import React, { useEffect, useState } from 'react';
@@ -6,26 +7,35 @@ import React, { useEffect, useState } from 'react';
 
 
 const UserProfile = () => {
+    const location = useLocation()
   const [user, setUser] = useState({})
 
-  const url = window.location.href
+const getUser = async() =>
+{
+  try
+  {
 
-  const userName = url.split("?")[1]
+    const username = location.pathname.split("/")[2]
 
 
-
-  const fetchData = () => {
-    fetch(`http://localhost:1339/users/usernames/${userName}`)
+    fetch(`http://localhost:1339/users/usernames/${username}`)
       .then(response => {
         return response.json()
       })
       .then(data => {
         setUser(data)
       })
-  }
+    }
+    catch(error)
+    {
+        alert(error.message)
+    }
+
+}
+
 
   useEffect(() => {
-    fetchData()
+    getUser()
   }, [])
 
   return (

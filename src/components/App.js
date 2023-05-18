@@ -44,7 +44,7 @@ function App() {
           <Route path="home" element={<Home/>}/>
           <Route path="jobs" element={<Jobs/>}/>
           <Route path="settings" element={<Settings/>}/>
-          <Route path="userprofile" element={<UserProfile/>}/>
+          <Route path="profile/:username" element={<UserProfile/>}/>
           <Route path="profile" element={<Profile/>}/>
           <Route path="forum" element={<Forum/>}/>
         </Route>

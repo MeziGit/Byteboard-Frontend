@@ -17,7 +17,7 @@ let sendMailUrl = `mailto:“${props.user.email}”`
             {/* Display the user */}
 
             <Card
-                link={`userprofile?${props.user.username}`}
+                link={`profile/${props.user.username}`}
                 image={props.user.profilePicture}
                 children={
                     <>
