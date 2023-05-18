@@ -12,6 +12,8 @@ const Profile = () => {
 
     const userName = url.split("?")[1]
 
+    
+
     const fetchData = () => {
       fetch(`http://localhost:1339/users/${userName}`)
         .then(response => {
