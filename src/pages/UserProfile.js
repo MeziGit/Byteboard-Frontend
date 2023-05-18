@@ -18,7 +18,7 @@ const getUser = async() =>
     const username = location.pathname.split("/")[2]
 
 
-    fetch(`http://localhost:1339/users/usernames/${username}`)
+    fetch(`${process.env.REACT_APP_PUBLIC_URL}/users/usernames/${username}`)
       .then(response => {
         return response.json()
       })

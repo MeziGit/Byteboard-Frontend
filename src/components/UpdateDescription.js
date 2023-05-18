@@ -15,7 +15,7 @@ function UpdateDescriptionForm() {
         try {
 
 
-            const res = await fetch("http://localhost:1339/session/getUsername",
+            const res = await fetch(`${process.env.REACT_APP_PUBLIC_URL}/session/getUsername`,
                 { method: "GET", credentials: "include" });
 
             if (res.status !== 200) throw new Error("User not logged in")
@@ -36,7 +36,7 @@ function UpdateDescriptionForm() {
                 }
             }
 
-            const response = await fetch("http://localhost:1339/users", requestOptions)
+            const response = await fetch(`${process.env.REACT_APP_PUBLIC_URL}/users`, requestOptions)
 
             if (response.status === 200) {
                 alert("Description updated")

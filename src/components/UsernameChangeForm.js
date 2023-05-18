@@ -39,7 +39,7 @@ function UsernameChangeForm() {
                 }
             }
 
-            const response = await fetch("http://localhost:1339/users", requestOptions)
+            const response = await fetch(`${process.env.REACT_APP_PUBLIC_URL}/users`, requestOptions)
 
             if (response.status === 200) {
                 alert("Username changed")
