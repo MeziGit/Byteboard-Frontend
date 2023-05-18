@@ -12,6 +12,7 @@ import {Home} from "./Home"
 import Settings from '../pages/Settings';
 import Profile from '../pages/Profile';
 import Jobs from '../pages/Jobs';
+import Forum from './Pages/Forum';
 
 
 const LoggedInContext = createContext({
@@ -43,6 +44,7 @@ function App() {
           <Route path="jobs" element={<Jobs/>}/>
           <Route path="settings" element={<Settings/>}/>
           <Route path="profile" element={<Profile/>}/>
+          <Route path="forum" element={<Forum/>}/>
         </Route>
       </Routes>
 
