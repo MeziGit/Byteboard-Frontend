@@ -2,17 +2,18 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import { Navbar } from "react-bootstrap";
-const MAX_CONTENT_LENGTH = 150;
+const MAX_CONTENT_LENGTH = 300;
 
 
 function PostSummary({post}) {
     const [author, setAuthor] = useState(null);
     const dateCreated = new Date(post.dateCreated);
+    const content = post.postContent.length > MAX_CONTENT_LENGTH ? post.postContent.substring(0, MAX_CONTENT_LENGTH) + "..." : post.postContent;
+
 
     const getNumber = function(num) {
         return num > 10 ? num.toString() : "0" + num.toString(); 
     }
-
 
     const getAuthor = async function() {
         const requestOptions = {
@@ -49,7 +50,7 @@ function PostSummary({post}) {
             <h3 className="post-summary">{post.postTitle}</h3>
             <h4 className="post-summary post-summary-item">By {author && author.username}</h4>
             <h4 className="post-summary post-summary-item">{dateCreated.getFullYear()}-{getNumber(dateCreated.getMonth() + 1)}-{getNumber(dateCreated.getDate())}</h4>
-            <p className="post-summary-desc">{post.postContent}</p>
+            <p className="post-summary-desc">{content}</p>
         </div>
     )
 }
