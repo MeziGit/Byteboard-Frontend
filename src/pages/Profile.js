@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { AllPostsFromUser } from "../components/AllPostsFromUser";
 import { DisplayUser } from "../components/DisplayUser"
 import React, { useEffect, useState } from 'react';
+import { UpdateDescriptionForm } from "../components/UpdateDescription";
 
 
 
@@ -56,6 +57,7 @@ const Profile = () => {
         </ul>
       )}
 
+<UpdateDescriptionForm/>
       {user && <AllPostsFromUser user={user} />}
 
     </div>
