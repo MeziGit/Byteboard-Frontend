@@ -14,3 +14,6 @@ Required modules:
 - react-scripts
 - react
 - web-vitals
+
+generate JsDoc
+- npm run doc
