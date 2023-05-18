@@ -30,12 +30,13 @@ function Header() {
             <Navbar id="header">
                 <img id="byteboard-title-image" src={process.env.PUBLIC_URL + "/images/title.png"} alt="title" />
                 <NavButton to="/" label="Login/Register" />
-                <NavButton to="/home" Visit Home label="home" />
+                <NavButton to="/home" Visit="Home" label="Home" />
 
                 <NavButton to="/about" label="About Us" />
 
                 <NavButton to="/contact" label="Contact Us" />
                 
+                <NavButton to="/jobs" label="Jobs" />
                 <NavButton to="/settings" label="Settings" />
                 <NavButton to="/profile" label="Profile"/>
             
