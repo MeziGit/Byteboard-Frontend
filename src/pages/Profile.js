@@ -26,7 +26,7 @@ const Profile = () => {
 
     const username = await res.text();
 
-    const response = await fetch(`${process.env.REACT_APP_PUBLIC_URL}/users/${username}`)
+    const response = await fetch(`${process.env.REACT_APP_PUBLIC_URL}/users/username/${username}`)
 
     let result = await response.json()
 
