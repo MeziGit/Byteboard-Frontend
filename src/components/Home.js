@@ -1,26 +1,25 @@
-import  {LoggedInContext}  from "./App";
-import NavButton from "./NavButton";
-import Header from "./Header";
-import { Navbar } from "react-bootstrap";
 import { AllUsers } from "./AllUsers";
 import { PostForm } from "./PostForm";
+import { AllPosts } from "./AllPosts";
 
-function Home()
-{
-    return(
-        
+function Home() {
+
+    return (
+
         <div>
 
-<h1>Home</h1>
-       
-       <div className="home">
-       <AllUsers/>
+            <h1>Home</h1>
 
-<PostForm/>
-       
-</div>
-       </div>
+            <div className="home">
+                <AllUsers />
+
+                <PostForm />
+
+               <AllPosts/>
+
+            </div>
+        </div>
     )
 }
 
-export {Home}
+export { Home }
