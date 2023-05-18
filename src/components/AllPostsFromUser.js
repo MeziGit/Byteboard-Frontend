@@ -35,7 +35,6 @@ function AllPostsFromUser(props) {
     }
     catch(error)
     {
-        alert(error.message)
     }
 }
 
