@@ -6,10 +6,10 @@ import "./App.css"
  * @param {Object,String} children,image movie object and an image path
  * @returns 
  */
-function Card({ children,image}) {
+function Card({ children,image,link}) {
   return (    
      <div className="card">   
-     <img className="card-img" src={image} alt=""></img>
+     <a href={link}><img className="card-img" src={image} alt=""></img></a>
         {children}   
      </div>  
   );
