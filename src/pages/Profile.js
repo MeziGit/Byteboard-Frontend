@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { AllPostsFromUser } from "../components/AllPostsFromUser";
 import { DisplayUser } from "../components/DisplayUser"
 import React, { useEffect, useState } from 'react';
@@ -7,72 +8,60 @@ import React, { useEffect, useState } from 'react';
 
 const Profile = () => {
 
-  const [email, setEmail] = useState(null)
+  const [user, setUser] = useState(null)
+  const navigate = useNavigate()
 
 
+  const getUserProfile = async () => {
 
 
-  const handleSubmit = async (event) => {
-      event.preventDefault()
+    const res = await fetch("http://localhost:1339/session/getUsername",
+      { method: "GET", credentials: "include" });
 
 
+    if (res.status !== 200) {
+      navigate("/usererror", { state: { errorMessage: "You are not logged in" } })
+    }
 
+    const username = await res.text();
 
-      try {
+    const response = await fetch(`http://localhost:1339/users/${username}`)
 
+    let result = await response.json()
 
-          const res = await fetch("http://localhost:1339/session/getUsername",
-              { method: "GET", credentials: "include" });
+    setUser(result)
 
-          if (res.status !== 200) throw new Error("User not logged in")
-
-          const username = await res.text();
-
-
-          const password = prompt("Please enter your current password")
-
-          const requestOptions = {
-              method: "PUT",
-              credentials: "include",
-              body: JSON.stringify({
-                  usernameToUpdate: username,
-                  email: email,
-                  currentPassword: password
-              }),
-              headers: {
-                  "Content-type": "application/json; charset=UTF-8"
-              }
-          }
-
-          const response = await fetch("http://localhost:1339/users", requestOptions)
-
-          if (response.status === 200) {
-              alert("Email changed")
-
-          }
-          else {
-
-              let result = await response.json()
-              alert(result.errorMessage)
-
-          }
-      }
-      catch (error) {
-          alert("an error occured try again")
-      }
   }
 
 
 
+
+  useEffect(() => {
+    getUserProfile()
+  }, [])
+
+
+
   return (
-      <form onSubmit={handleSubmit}>
-          <label htmlFor="email">Email Change: </label>
-          <input type="text" name="email" placeholder="Email..." onChange={(e) => setEmail(e.target.value)} />
+    <div>
+      {user && (
+        <ul>
+          <DisplayUser user={user} />
+
+          <h1>Description</h1>
+          <h1>{user.description}</h1>
+          <h1>Reputation: {user.reputation}</h1>
 
 
-          {email && <button type="submit">Submit</button>}
-      </form>
+        </ul>
+      )}
+
+      {user && <AllPostsFromUser user={user} />}
+
+    </div>
   )
+
+
 }
 
 export default Profile
