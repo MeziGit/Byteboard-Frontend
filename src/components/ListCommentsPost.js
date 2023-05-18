@@ -1,6 +1,3 @@
-import { DisplayComment } from "./CommentForm"
-import { DisplayPost } from "./DisplayPost"
-import { DisplayUser } from "./DisplayUser"
 import { useNavigate } from "react-router-dom"
 
 

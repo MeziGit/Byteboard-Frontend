@@ -1,6 +1,5 @@
-import { DisplayPost } from "./DisplayPost"
-import { DisplayUser } from "./DisplayUser"
 import { useNavigate } from "react-router-dom"
+import PostSummary from "./PostSummary"
 
 
 function ListPosts({posts})
@@ -15,10 +14,8 @@ try{
                 {posts.map((post) =>(
                    
                 
-                    <DisplayPost post={post}/>
+                    <PostSummary post={post}/>
                    
-
-              
                 ))}
             
         </div>
