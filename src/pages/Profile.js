@@ -20,7 +20,7 @@ const Profile = () => {
 
 
     if (res.status !== 200) {
-      navigate("/usererror", { state: { errorMessage: "You are not logged in" } })
+      navigate("/", { state: { errorMessage: "You are not logged in" } })
     }
 
     const username = await res.text();
