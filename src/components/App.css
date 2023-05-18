@@ -168,6 +168,11 @@ button {
   max-width: 100px;
 }
 
+.home
+{
+ display: flex;
+ flex-direction: row;
+}
 
 p {
   color: var(--colour-secondary);
