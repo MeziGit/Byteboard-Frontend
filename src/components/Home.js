@@ -10,7 +10,28 @@ import { useEffect } from "react";
  */
 function Home() {
 
+    const [deleteAdmin,setDeleteAdmin] = useState(null)
 
+    const getSelf = async()=>
+    {
+        const res = await fetch("http://localhost:1339/session/getSelf",
+        { method: "GET", credentials: "include" });
+    
+        let result = await res.json()
+    
+    
+        if(result.username == "admin")
+        {
+            setDeleteAdmin(true)
+        }
+    }
+    
+    
+    
+    useEffect(() => {
+        getSelf()
+       
+      }, [])
 
     return (
 
@@ -19,11 +40,11 @@ function Home() {
             <h1>Home</h1>
 
             <div className="home">
-                <AllUsers />
+                <AllUsers deleteAdmin={deleteAdmin}/>
 
                 <PostForm />
 
-                <AllPosts />
+                <AllPosts deleteAdmin={deleteAdmin}/>
 
             </div>
         </div>

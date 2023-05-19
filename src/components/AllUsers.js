@@ -6,7 +6,7 @@ import { useEffect } from "react";
  * Gets all the users from a fetch request
  * @returns A list of all the users
  */
-function AllUsers() {
+function AllUsers({deleteAdmin}) {
     const [users, setUsers] = useState([])
 
     const callGetAllUsers = async () => {
@@ -19,28 +19,7 @@ function AllUsers() {
         setUsers(result)
     };
 
-    const [deleteAdmin,setDeleteAdmin] = useState(null)
 
-const getSelf = async()=>
-{
-    const res = await fetch("http://localhost:1339/session/getSelf",
-    { method: "GET", credentials: "include" });
-
-    let result = await res.json()
-
-
-    if(result.username == "admin")
-    {
-        setDeleteAdmin(true)
-    }
-}
-
-
-
-useEffect(() => {
-    getSelf()
-   
-  }, [])
 
 
 
