@@ -43,7 +43,7 @@ async function handleVote(id, vote) {
 }
 
 
-function PostSummary({ post, deletePost }) {
+function PostSummary({ post, deletePost,updatePost }) {
     const [author, setAuthor] = useState(null);
     const dateCreated = new Date(post.dateCreated);
     const content = post.postContent.length > MAX_CONTENT_LENGTH ? post.postContent.substring(0, MAX_CONTENT_LENGTH) + "..." : post.postContent;
@@ -222,24 +222,27 @@ postContent:contentUpdate
             <h4 className="post-summary post-summary-item">{dateCreated.getFullYear()}-{getNumber(dateCreated.getMonth() + 1)}-{getNumber(dateCreated.getDate())}</h4>
             <p className="post-summary-desc">{content}</p>
 
+
+            <AllComments id={post._id} />
+
             <button type="button" class="btn btn-outline-success" onClick={handleLike}>Like</button>
             <button type="button" class="btn btn-danger" onClick={handleDislike}>Dislike</button>
 
-            <AllComments id={post._id} />
+<br/><br/>
             <CommentForm id={post._id} />
 
  
             <br />
-            <label htmlFor="titleUpdate">Update Title:   </label>
+            {updatePost && <label htmlFor="titleUpdate">Update Title:   </label>}
             <br />
-            <input type="text" name="titleUpdate" placeholder="New Title..." onChange={(e) => setTitleUpdate(e.target.value)} />
+            {updatePost && <input type="text" name="titleUpdate" placeholder="New Title..." onChange={(e) => setTitleUpdate(e.target.value)} />}
 
             <br /><br />
             {titleUpdate && <button type="button" class="btn btn-info" onClick={handleTitle}>Update</button>}
             <br />
-            <label htmlFor="contentUpdate">Update Content:   </label>
+            {updatePost && <label htmlFor="contentUpdate">Update Content:   </label>}
             <br />
-            <input type="text" name="contentUpdate" placeholder="New Content..." onChange={(e) => setContentUpdate(e.target.value)} />
+            {updatePost && <input type="text" name="contentUpdate" placeholder="New Content..." onChange={(e) => setContentUpdate(e.target.value)} />}
             <br /><br />
             {contentUpdate && <button type="button" onClick={handleContent} class="btn btn-info">Update</button>}
 
