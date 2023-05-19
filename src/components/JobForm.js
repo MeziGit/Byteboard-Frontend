@@ -6,8 +6,8 @@ import React, { useEffect, useState } from 'react';
  */
 function JobForm() {
 
-    const [jobTitle, setJobTitle] = useState([])
-    const [jobContent, setJobContent] = useState([])
+    const [jobTitle, setJobTitle] = useState(null)
+    const [jobContent, setJobContent] = useState(null)
 
 
 
@@ -55,13 +55,14 @@ function JobForm() {
 
 
     return (
-        <div className="jobs">
+        <div>
+        <div className="post">
             <h1>Create a Job</h1>
             <input type="text" placeholder="Job Title" onChange={(e) => setJobTitle(e.target.value)} />
             <input type="text" placeholder="Job Description" onChange={(e) => setJobContent(e.target.value)} />
 
-            <button onClick={createJobListing}>Create Job Listing</button>
-
+          {jobTitle && jobContent &&  <button class="btn btn-light" onClick={createJobListing}>Create Job Listing</button>}
+</div>
             <h1>List of job offers</h1>
         </div>
     );
