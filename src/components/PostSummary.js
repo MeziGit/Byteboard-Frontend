@@ -295,7 +295,17 @@ function PostSummary({post,deletePost,updatePost}) {
             <button onClick={handleDislike} className="post-vote-button"><img className="post-vote-button post-vote-img" src={process.env.PUBLIC_URL + `/images/Dislike_${userVote ? (userVote == -1 ? "enabled" : "disabled") : "disabled"}.png`}/></button>
 
             <h4 className="post-summary post-summary-item post-summary-comments">{currentPost.comments.length} Comments</h4>
+        </div>
+    )
+}
 
+/*
+ 
+<br/>
+<CommentForm id={post._id}/>
+            <br /><br />
+            {deletePost && <button type="button" class="btn btn-warning" onClick={handleDelete}>Delete Post</button>}
+            
             <br />
             {updatePost && <label htmlFor="titleUpdate">Update Title:   </label>}
             <br />
@@ -309,13 +319,6 @@ function PostSummary({post,deletePost,updatePost}) {
             {updatePost && <input type="text" name="contentUpdate" placeholder="New Content..." onChange={(e) => setContentUpdate(e.target.value)} />}
             <br /><br />
             {contentUpdate && <button type="button" onClick={handleContent} class="btn btn-info">Update</button>}
-
-<br/>
-<CommentForm id={post._id}/>
-            <br /><br />
-            {deletePost && <button type="button" class="btn btn-warning" onClick={handleDelete}>Delete Post</button>}
-        </div>
-    )
-}
+ */
 
 export default PostSummary;
