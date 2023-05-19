@@ -282,6 +282,10 @@ width: 30em;
   padding-right: -0.5rem;
 }
 
+.topic-container {
+  display: inline !important;
+}
+
 .post-container {
   text-align: left;
   display: inline;
@@ -333,7 +337,7 @@ width: 30em;
 }
 
 .comment-container {
-  outline-width: var(--outline-width-primary);
+  outline-width: var(--outline-width-secondary);
   outline-color: var(--colour-secondary);
   outline-style: solid;
   outline-offset: var(--outline-offset-primary);
