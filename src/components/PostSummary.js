@@ -11,7 +11,7 @@ const MAX_CONTENT_LENGTH = 300;
 /**
  * Represents a summary of a post
  */
-function PostSummary({post}) {
+function PostSummary({post,deletePost,updatePost}) {
     const [isLoggedIn, setIsLoggedIn] = useContext(LoggedInContext);
     const [author, setAuthor] = useState(null);
     const [userVote, setUserVote] = useState(null);
@@ -161,7 +161,123 @@ function PostSummary({post}) {
         getUserVote();
         getPostScore();
     }, []);
+
+    const handleDelete = async (event) => {
+        try {
+
+
+            event.preventDefault()
+
+            const requestOptions = {
+                method: "DELETE",
+                credentials: "include",
+                body: JSON.stringify({
+                    postId: post._id
+
+                }),
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8"
+                }
+            }
+
+            const response = await fetch("http://localhost:1339/posts", requestOptions)
+
+            if (response.status === 200) {
+                alert("Post deleted")
+
+            }
+            else {
+
+                let result = await response.json()
+                alert(result.errorMessage)
+
+            }
+        }
+        catch (error) {
+            alert(error.message)
+        }
+    }
+
     
+    const [titleUpdate, setTitleUpdate] = useState(null)
+    const [contentUpdate, setContentUpdate] = useState(null)
+
+
+    const handleTitle = async (event) => {
+        try {
+
+
+            event.preventDefault()
+
+            const requestOptions = {
+                method: "PUT",
+                credentials: "include",
+                body: JSON.stringify({
+                    postId: post._id,
+                    postTitle: titleUpdate
+                }),
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8"
+                }
+            }
+
+            const response = await fetch("http://localhost:1339/posts", requestOptions)
+
+            if (response.status === 200) {
+                alert("Title updated")
+
+            }
+            else {
+
+                let result = await response.json()
+                alert(result.errorMessage)
+
+            }
+        }
+        catch (error) {
+            alert(error.message)
+        }
+
+
+    }
+
+    const handleContent = async (event) => {
+        try {
+
+
+            event.preventDefault()
+
+            const requestOptions = {
+                method: "PUT",
+                credentials: "include",
+                body: JSON.stringify({
+                    postId: post._id,
+                    postContent: contentUpdate
+                }),
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8"
+                }
+            }
+
+            const response = await fetch("http://localhost:1339/posts", requestOptions)
+
+            if (response.status === 200) {
+                alert("Content updated")
+
+            }
+            else {
+
+                let result = await response.json()
+                alert(result.errorMessage)
+
+            }
+        }
+        catch (error) {
+            alert(error.message)
+        }
+
+
+    }
     
     
     return (
@@ -178,6 +294,23 @@ function PostSummary({post}) {
             <button onClick={handleDislike} className="post-vote-button"><img className="post-vote-button post-vote-img" src={process.env.PUBLIC_URL + `/images/Dislike_${userVote ? (userVote == -1 ? "enabled" : "disabled") : "disabled"}.png`}/></button>
 
             <h4 className="post-summary post-summary-item post-summary-comments">{currentPost.comments.length} Comments</h4>
+
+            <br />
+            {updatePost && <label htmlFor="titleUpdate">Update Title:   </label>}
+            <br />
+            {updatePost && <input type="text" name="titleUpdate" placeholder="New Title..." onChange={(e) => setTitleUpdate(e.target.value)} />}
+
+            <br /><br />
+            {titleUpdate && <button type="button" class="btn btn-info" onClick={handleTitle}>Update</button>}
+            <br />
+            {updatePost && <label htmlFor="contentUpdate">Update Content:   </label>}
+            <br />
+            {updatePost && <input type="text" name="contentUpdate" placeholder="New Content..." onChange={(e) => setContentUpdate(e.target.value)} />}
+            <br /><br />
+            {contentUpdate && <button type="button" onClick={handleContent} class="btn btn-info">Update</button>}
+
+            <br /><br />
+            {deletePost && <button type="button" class="btn btn-warning" onClick={handleDelete}>Delete Post</button>}
         </div>
     )
 }
