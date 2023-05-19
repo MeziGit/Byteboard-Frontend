@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import {NavLink} from "react-router-dom";
 import  {LoggedInContext}  from "./App";
+import { ListTopics } from "./ListTopics";
 const MAX_CONTENT_LENGTH = 300;
 
 
@@ -165,6 +166,7 @@ function PostSummary({post}) {
     
     return (
         <div className="post-summary-container">
+            <ListTopics topics={post.topics}/>
             <NavLink to={"/posts/" + currentPost._id}><h3 className="post-summary">{currentPost.postTitle}</h3></NavLink>
             <h4 className="post-summary post-summary-item">By {author && author.username}</h4>
             <h4 className="post-summary post-summary-item">{dateCreated.getFullYear()}-{getNumber(dateCreated.getMonth() + 1)}-{getNumber(dateCreated.getDate())}</h4>
