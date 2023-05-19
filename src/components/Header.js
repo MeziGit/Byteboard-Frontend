@@ -21,12 +21,28 @@ function Header() {
 
     const getUserLogin = async function() {
         try {
-            
+            const requestOptions = {
+                method: "GET",
+                credentials: "include",
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8"
+                }
+            }
+
+            const result = await fetch(process.env.REACT_APP_PUBLIC_URL + "/session/getSelf");
+
+            if (result.status === 200) {
+                setLoggedIn(true);
+            }
         }
         catch(error) {
             console.error(error);
         }
     }
+
+    // useEffect(() => {
+    //     getUserLogin();
+    // });
 
 
 
@@ -45,7 +61,8 @@ function Header() {
                 <NavButton to="/profile" label="Profile" />
                 <NavButton to="/settings" label="Settings" />
 
-                {isLoggedIn && <LogoutButton/>}{!isLoggedIn && <NavButton to="/" label="Login/Register" />}
+                <NavButton to="/" label="Login/Register" />
+                <LogoutButton/>
             </Navbar>
         </div>
     )
