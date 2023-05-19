@@ -75,7 +75,7 @@ function PostForm() {
             <input type="text" name="title" placeholder="Title..." onChange={(e) => setTitle(e.target.value)} />
             <br />
 
-            <label htmlFor="title">Content: </label>
+            <label htmlFor="title">Content: </label><br/>
             <input type="text" name="title" placeholder="Content..." onChange={(e) => setContent(e.target.value)} />
             <br />
 
