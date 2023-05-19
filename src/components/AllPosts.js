@@ -6,7 +6,7 @@ import { useState, useEffect } from "react"
  * Fetches and returns all the posts in a list
  * @returns A list of all the posts
  */
-function AllPosts() {
+function AllPosts({deleteAdmin}) {
     const navigate = useNavigate()
 
     const [posts, setPosts] = useState(null)
@@ -42,7 +42,7 @@ function AllPosts() {
                 {posts.map((post) => (
 
 
-                    <PostSummary post={post} />
+                    <PostSummary post={post} deletePost={deleteAdmin} />
 
 
 

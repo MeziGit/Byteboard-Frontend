@@ -2,8 +2,8 @@ import React from "react";
 import { useContext } from 'react';
 import { useEffect } from "react";
 import { useState } from "react";
-import {NavLink} from "react-router-dom";
-import  {LoggedInContext}  from "./App";
+import { NavLink } from "react-router-dom";
+import { LoggedInContext } from "./App";
 import { ListTopics } from "./ListTopics";
 import { CommentForm } from "./CommentForm";
 const MAX_CONTENT_LENGTH = 300;
@@ -12,7 +12,7 @@ const MAX_CONTENT_LENGTH = 300;
 /**
  * Represents a summary of a post
  */
-function PostSummary({post,deletePost,updatePost}) {
+function PostSummary({ post, deletePost, updatePost }) {
     const [isLoggedIn, setIsLoggedIn] = useContext(LoggedInContext);
     const [author, setAuthor] = useState(null);
     const [userVote, setUserVote] = useState(null);
@@ -23,13 +23,13 @@ function PostSummary({post,deletePost,updatePost}) {
     const dateEdited = currentPost.dateEdited ? new Date(currentPost.dateEdited) : null;
     const content = currentPost.postContent.length > MAX_CONTENT_LENGTH ? currentPost.postContent.substring(0, MAX_CONTENT_LENGTH) + "..." : currentPost.postContent;
 
-    
+
     //#region get functions
-    const getNumber = function(num) {
-        return num > 10 ? num.toString() : "0" + num.toString(); 
+    const getNumber = function (num) {
+        return num > 10 ? num.toString() : "0" + num.toString();
     }
 
-    const getAuthor = async function() {
+    const getAuthor = async function () {
         const requestOptions = {
             method: "GET",
             credentials: "include",
@@ -41,7 +41,7 @@ function PostSummary({post,deletePost,updatePost}) {
         let response;
         try {
             response = await fetch(process.env.REACT_APP_PUBLIC_URL + "/users/ids/" + currentPost.authorId, requestOptions);
-            
+
             if (response.status === 200) {
                 const user = await response.json();
                 setAuthor(user);
@@ -49,13 +49,13 @@ function PostSummary({post,deletePost,updatePost}) {
             else
                 alert(response.statusText);
         }
-        catch(error) {
+        catch (error) {
             alert("Error: " + error.message);
         }
-       
+
     }
 
-    const getPostScore = async function() {
+    const getPostScore = async function () {
         try {
             const requestOptions = {
                 method: "GET",
@@ -64,7 +64,7 @@ function PostSummary({post,deletePost,updatePost}) {
                     "Content-type": "application/json; charset=UTF-8"
                 }
             }
-    
+
             const result = await fetch(process.env.REACT_APP_PUBLIC_URL + "/posts/ids/" + currentPost._id.toString(), requestOptions);
 
             if (result.status === 200) {
@@ -72,12 +72,12 @@ function PostSummary({post,deletePost,updatePost}) {
                 setPostScore(newPost.score);
             }
         }
-        catch(error) {
+        catch (error) {
             console.log(error);
         }
     }
 
-    const getUserVote = async function() {
+    const getUserVote = async function () {
         try {
             const requestOptions = {
                 method: "GET",
@@ -86,7 +86,7 @@ function PostSummary({post,deletePost,updatePost}) {
                     "Content-type": "application/json; charset=UTF-8"
                 }
             }
-            
+
             const postResult = await fetch(process.env.REACT_APP_PUBLIC_URL + "/posts/ids/" + currentPost._id.toString(), requestOptions);
             const loginResult = await fetch(process.env.REACT_APP_PUBLIC_URL + "/session/getSelf", requestOptions);
             let fetchedPost;
@@ -110,13 +110,13 @@ function PostSummary({post,deletePost,updatePost}) {
                 setIsLoggedIn(false);
             }
         }
-        catch(error) {
+        catch (error) {
             console.error(error);
         }
     }
     //#endregion
 
-    const handleVote = async function(vote) {
+    const handleVote = async function (vote) {
         try {
             if (isLoggedIn) {
                 const requestOptions = {
@@ -130,9 +130,9 @@ function PostSummary({post,deletePost,updatePost}) {
                         "Content-type": "application/json; charset=UTF-8"
                     }
                 }
-        
+
                 const result = await fetch(process.env.REACT_APP_PUBLIC_URL + "/posts/vote", requestOptions);
-    
+
                 if (result.status === 200) {
                     getPostScore();
                     getUserVote();
@@ -144,15 +144,15 @@ function PostSummary({post,deletePost,updatePost}) {
             else
                 alert("Sign up or log in to vote on posts");
         }
-        catch(error) {
+        catch (error) {
             console.error(error);
         }
     }
 
-    const handleLike = async function() {
+    const handleLike = async function () {
         handleVote(1);
     }
-    const handleDislike = async function() {
+    const handleDislike = async function () {
         handleVote(-1);
     }
 
@@ -199,7 +199,7 @@ function PostSummary({post,deletePost,updatePost}) {
         }
     }
 
-    
+
     const [titleUpdate, setTitleUpdate] = useState(null)
     const [contentUpdate, setContentUpdate] = useState(null)
 
@@ -279,33 +279,28 @@ function PostSummary({post,deletePost,updatePost}) {
 
 
     }
-    
-    
+
+
     return (
         <div className="post-summary-container">
-            <ListTopics topics={post.topics}/>
+            <ListTopics topics={post.topics} />
             <NavLink to={"/posts/" + currentPost._id}><h3 className="post-summary">{currentPost.postTitle}</h3></NavLink>
             <h4 className="post-summary post-summary-item">By {author && author.username}</h4>
             <h4 className="post-summary post-summary-item">{dateCreated.getFullYear()}-{getNumber(dateCreated.getMonth() + 1)}-{getNumber(dateCreated.getDate())}</h4>
             {dateEdited && <h4 className="post-summary post-summary-item">(Edited {dateEdited.getFullYear()}-{getNumber(dateEdited.getMonth() + 1)}-{getNumber(dateEdited.getDate())})</h4>}
             <p className="post-summary-desc">{content}</p>
 
-            <button onClick={handleLike} className="post-vote-button"><img className="post-vote-button post-vote-img" src={process.env.PUBLIC_URL + `/images/Like_${userVote ? (userVote == 1 ? "enabled" : "disabled") : "disabled"}.png`}/></button>
+            <button onClick={handleLike} className="post-vote-button"><img className="post-vote-button post-vote-img" src={process.env.PUBLIC_URL + `/images/Like_${userVote ? (userVote == 1 ? "enabled" : "disabled") : "disabled"}.png`} /></button>
             <h4 className="post-vote-score">{postScore && postScore}</h4>
-            <button onClick={handleDislike} className="post-vote-button"><img className="post-vote-button post-vote-img" src={process.env.PUBLIC_URL + `/images/Dislike_${userVote ? (userVote == -1 ? "enabled" : "disabled") : "disabled"}.png`}/></button>
+            <button onClick={handleDislike} className="post-vote-button"><img className="post-vote-button post-vote-img" src={process.env.PUBLIC_URL + `/images/Dislike_${userVote ? (userVote == -1 ? "enabled" : "disabled") : "disabled"}.png`} /></button>
 
             <h4 className="post-summary post-summary-item post-summary-comments">{currentPost.comments.length} Comments</h4>
-        </div>
-    )
-}
 
-/*
- 
-<br/>
-<CommentForm id={post._id}/>
+            <br />
+            <CommentForm id={post._id} />
             <br /><br />
             {deletePost && <button type="button" class="btn btn-warning" onClick={handleDelete}>Delete Post</button>}
-            
+
             <br />
             {updatePost && <label htmlFor="titleUpdate">Update Title:   </label>}
             <br />
@@ -319,6 +314,9 @@ function PostSummary({post,deletePost,updatePost}) {
             {updatePost && <input type="text" name="contentUpdate" placeholder="New Content..." onChange={(e) => setContentUpdate(e.target.value)} />}
             <br /><br />
             {contentUpdate && <button type="button" onClick={handleContent} class="btn btn-info">Update</button>}
- */
+        </div>
+    )
+}
+
 
 export default PostSummary;
