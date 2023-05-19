@@ -1,14 +1,15 @@
 import { useState } from "react"
 
 
+/**
+ * Provides a form to change the email of the user 
+ * @returns A form to change the email of the user
+ */
 function EmailChangeForm() {
     const [email, setEmail] = useState(null)
 
     const handleSubmit = async (event) => {
         event.preventDefault()
-
-
-
 
         try {
 
@@ -16,8 +17,6 @@ function EmailChangeForm() {
                 { method: "GET", credentials: "include" });
 
             if (res.status !== 200) throw new Error("You are not logged in!")
-
-
 
             const password = prompt("Please enter your current password")
 

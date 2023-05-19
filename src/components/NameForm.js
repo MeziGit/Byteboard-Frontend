@@ -1,6 +1,10 @@
 import { useRef } from "react";
 import { useCookies } from "react-cookie";
 
+/**
+ * Provides a forum to enter a name
+ * @returns A form to enter a name
+ */
 function NameForm() {
     const nameRef = useRef(null)
     const [cookies, setCookie] = useCookies(["name"])

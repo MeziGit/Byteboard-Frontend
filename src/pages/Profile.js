@@ -6,7 +6,10 @@ import { UpdateDescriptionForm } from "../components/UpdateDescription";
 
 
 
-
+/**
+ * Gets the user's profile
+ * @returns The user's profile
+ */
 const Profile = () => {
 
   const [user, setUser] = useState(null)

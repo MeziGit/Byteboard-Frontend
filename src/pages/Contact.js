@@ -1,6 +1,6 @@
 
 /**
- * contact information
+ * provides contact information
  * @returns  contact information html
  */
 function Contact()

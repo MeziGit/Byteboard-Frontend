@@ -1,5 +1,11 @@
 import { useState,useEffect } from "react"
 
+/**
+ * Displays the newly created comment
+ * @param {string} id The id of the user
+ * @param {string} comment The comment
+ * @returns The user and the comment
+ */
 function DisplayComment({id,comment})
 {
 

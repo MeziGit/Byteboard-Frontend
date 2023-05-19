@@ -2,16 +2,15 @@ import { useContext, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { LoggedInContext } from "./App";
 
-
+/**
+ * Allows the user to change their name
+ * @returns A form to change the user's username
+ */
 function UsernameChangeForm() {
-    const [username,setUsername] = useState(null)
-
+    const [username, setUsername] = useState(null)
 
     const handleSubmit = async (event) => {
         event.preventDefault()
-
-
-
 
         try {
 
@@ -27,7 +26,7 @@ function UsernameChangeForm() {
                 method: "PUT",
                 credentials: "include",
                 body: JSON.stringify({
-                    username:username,
+                    username: username,
                     currentPassword: password
                 }),
                 headers: {

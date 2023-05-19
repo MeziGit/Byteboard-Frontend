@@ -4,6 +4,10 @@ import { LoggedInContext } from "./App";
 import "./App.css"
 
 
+/**
+ * Provides a registering forum for the user to create an account
+ * @returns A form for registering a new user
+ */
 function RegisterForm() {
     const [username, setUsername] = useState(null)
     const [password, setPassword] = useState(null)
@@ -28,30 +32,28 @@ function RegisterForm() {
                 }
             }
 
-if(isLoggedIn)
-{
-    alert("Logout before registering again")
+            if (isLoggedIn) {
+                alert("Logout before registering again")
 
 
-}
-else
-{
-
-            const response = await fetch(`${process.env.REACT_APP_PUBLIC_URL}/users/register`, requestOptions)
-
-            if (response.status === 200) {
-
-                alert("Successfull register")
-
-                navigate("/")
             }
             else {
 
-                let result = await response.json()
-                alert(result.errorMessage)
+                const response = await fetch(`${process.env.REACT_APP_PUBLIC_URL}/users/register`, requestOptions)
 
+                if (response.status === 200) {
+
+                    alert("Successfull register")
+
+                    navigate("/")
+                }
+                else {
+
+                    let result = await response.json()
+                    alert(result.errorMessage)
+
+                }
             }
-        }
         }
         catch (error) {
             alert(error.message)
@@ -75,10 +77,10 @@ else
             <input type="email" name="email" placeholder="Email..." onChange={(e) => setEmail(e.target.value)} />
 
 
-            
-            <br/><br/>
+
+            <br /><br />
             {username && password && email && <button type="submit" class="btn btn-success">Register</button>}
-            <br/><br/>
+            <br /><br />
         </form>
     )
 }

@@ -2,37 +2,36 @@ import { useContext, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { LoggedInContext } from "./App";
 
-
+/**
+ * Provides a simple forum to allow a user to update their password
+ * @returns A form to change the user's password
+ */
 function PasswordChangeForm() {
-    const [currentPassword,setPassword] = useState(null)
+    const [currentPassword, setPassword] = useState(null)
 
 
     const handleSubmit = async (event) => {
         event.preventDefault()
 
-
-
-
         try {
-
 
             const res = await fetch("http://localhost:1339/session/getUsername",
                 { method: "GET", credentials: "include" });
 
             if (res.status !== 200) throw new Error("You are not logged in!")
 
-            
+
             const username = await res.text();
 
             const password = prompt("Please enter your current password")
-            
+
 
             const requestOptions = {
                 method: "PUT",
                 credentials: "include",
                 body: JSON.stringify({
                     usernameToUpdate: username,
-                    password:currentPassword,
+                    password: currentPassword,
                     currentPassword: password
                 }),
                 headers: {

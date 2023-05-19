@@ -3,6 +3,10 @@ import { useNavigate } from "react-router-dom"
 import { LoggedInContext } from "./App";
 import { Button } from "react-bootstrap";
 
+/**
+ * Provides a button to delete the account from the database
+ * @returns A button that deletes the account
+ */
 function DeleteAccountButton() {
 
     const navigate = useNavigate()
@@ -18,8 +22,6 @@ function DeleteAccountButton() {
             if (res.status !== 200) throw new Error("You are not logged in!")
 
             const password = prompt("Please enter your current password")
-
-
 
             const requestOptions = {
                 method: "DELETE",

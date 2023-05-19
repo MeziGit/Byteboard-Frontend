@@ -1,8 +1,12 @@
 import { useState } from "react"
 import { ListUsers } from "./ListUsers"
 
+/**
+ * Gets all the users from a fetch request
+ * @returns A list of all the users
+ */
 function AllUsers() {
-    const [users,setUsers] = useState([])
+    const [users, setUsers] = useState([])
 
     const callGetAllUsers = async () => {
 
@@ -16,11 +20,7 @@ function AllUsers() {
     callGetAllUsers()
 
     return (
-
         <>
-
-          
-
             <ListUsers users={users} />
         </>
     )

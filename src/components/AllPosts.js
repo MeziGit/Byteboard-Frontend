@@ -1,62 +1,60 @@
 import { useNavigate } from "react-router-dom"
 import PostSummary from "./PostSummary"
-import { useState,useEffect } from "react"
+import { useState, useEffect } from "react"
 
-function AllPosts()
-{
-const navigate = useNavigate()
+/**
+ * Fetches and returns all the posts in a list
+ * @returns A list of all the posts
+ */
+function AllPosts() {
+    const navigate = useNavigate()
 
-const [posts, setPosts] = useState(null)
+    const [posts, setPosts] = useState(null)
 
-const getPosts = async () => {
+    const getPosts = async () => {
+
+        try {
+            const response = await fetch(process.env.REACT_APP_PUBLIC_URL + "/posts",
+                { method: "GET", credentials: "include" });
+
+
+            let result = await response.json()
+
+
+            setPosts(result)
+
+        }
+        catch (error) {
+            alert(error.message)
+        }
+    }
+
+    useEffect(() => {
+        getPosts()
+    }, [])
 
     try {
-        const response = await fetch(process.env.REACT_APP_PUBLIC_URL + "/posts",
-            { method: "GET", credentials: "include" });
+
+        return (
+            <div>
 
 
-        let result = await response.json()
+                {posts.map((post) => (
 
 
-        setPosts(result)
-        
+                    <PostSummary post={post} />
+
+
+
+                ))}
+
+            </div>
+        )
     }
     catch (error) {
-        alert(error.message)
+
+        navigate("/usererror", { state: { errorMessage: error.message } })
     }
 }
 
-
-
-
-
-useEffect(() => {
-    getPosts()
-}, [])
-
-try{
-
-    return(
-        <div>
-
-
-                {posts.map((post) =>(
-                   
-                
-                    <PostSummary post={post}/>
-                   
-
-              
-                ))}
-            
-        </div>
-    )
-                }
-                catch(error)
-                {
-                   
-                    navigate("/usererror", { state: { errorMessage: error.message} })
-                }
-}
-
-export {AllPosts}
+export { AllPosts }

@@ -1,61 +1,41 @@
 import { ListPosts } from "./ListPosts"
 import { useEffect, useState } from "react"
 
+/**
+ * Gets all the posts of a user from a fetch request
+ * @param {object} props The user object
+ * @returns List of all the posts of a user
+ */
 function AllPostsFromUser(props) {
 
-    const [posts, setPosts] = useState([])
+  const [posts, setPosts] = useState([])
 
 
-    const callGetAllPosts = async (event) => {
+  const callGetAllPosts = async (event) => {
 
-        try {
-            event.preventDefault()
+    try {
+      event.preventDefault()
 
-            const response = await fetch(`http://localhost:1339/posts/users/${props.user._id}`)
+      const response = await fetch(`http://localhost:1339/posts/users/${props.user._id}`)
 
-            const result = await response.json();
+      const result = await response.json();
 
-            setPosts(result)
-        }
-        catch (error) {
-            alert(error.message)
-        }
+      setPosts(result)
     }
+    catch (error) {
+      alert(error.message)
+    }
+  }
 
-    
+  return (
 
-    return (
+    <>
+      <button onClick={callGetAllPosts}>See Posts</button>
 
-        <>
-
-
-            <button onClick={callGetAllPosts}>See Posts</button>
-
-            <ListPosts posts={posts} />
-        </>
-    )
+      <ListPosts posts={posts} />
+    </>
+  )
 }
 
 
-
 export { AllPostsFromUser }
-
-/*
-
-const fetchData = () => {
-    fetch(`http://localhost:1339/posts/users/${props.user._id}`,{ method: "GET", credentials: "include" })
-      .then(response => {
-        return response.json()
-      })
-      .then(data => {
-       alert(data)
-        setPosts(data)
-      })
-  }
-
-  useEffect(() => {
-    fetchData()
-  }, [])
-*/
-//alert("name " +props.user.username + " id "+props.user._id)
- //alert(posts.postTitle)

@@ -1,8 +1,11 @@
 import { useState } from "react"
 
-
-function CommentForm({id}) {
-
+/**
+ * Provides a form to add a comment to a post
+ * @param {string} id id of the post
+ * @returns  A form to add a comment to a post
+ */
+function CommentForm({ id }) {
 
     const [comment, setComment] = useState(null)
 
@@ -44,14 +47,12 @@ function CommentForm({id}) {
 
     return (
         <form onSubmit={handleSubmit}>
-            
-            <input type="text" name="comment" placeholder="Add Comment..." onChange={(e) => setComment(e.target.value)} />
 
+            <input type="text" name="comment" placeholder="Add Comment..." onChange={(e) => setComment(e.target.value)} />
 
             {comment && <button type="submit" class="btn btn-primary" onClick={handleSubmit}>Submit</button>}
         </form>
     )
 }
 
-
-export { CommentForm}
+export { CommentForm }

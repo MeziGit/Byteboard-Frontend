@@ -1,6 +1,10 @@
 import { useState } from "react"
 import "./App.css"
 
+/**
+ * Provides a forum to create a post
+ * @returns A form to create a post
+ */
 function PostForm() {
     const [title, setTitle] = useState(null)
     const [content, setContent] = useState(null)

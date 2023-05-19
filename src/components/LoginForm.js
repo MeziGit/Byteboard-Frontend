@@ -3,7 +3,10 @@ import { useNavigate } from "react-router-dom"
 import { LoggedInContext } from "./App";
 import "./App.css"
 
-
+/**
+ * Provides a login form for the user
+ * @returns A login form
+ */
 function LoginForm() {
     const [username, setUsername] = useState(null)
     const [password, setPassword] = useState(null)

@@ -3,6 +3,10 @@ import { useNavigate } from "react-router-dom"
 import { LoggedInContext } from "./App";
 import { Button } from "react-bootstrap";
 
+/**
+ * A logout button that expires the cookie on the server
+ * @returns A button that logs the user out
+ */
 function LogoutButton() {
     const [isLoggedIn, setIsLoggedIn] = useContext(LoggedInContext)
     const navigate = useNavigate()

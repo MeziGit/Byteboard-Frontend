@@ -6,6 +6,9 @@ import { useState } from "react"
 import TwoPanes from "./TwoPanes";
 import "./Menu.css"
 
+/**
+ * @returns The main page of the app
+ */
 function Main() {
     const defaultRightPane = 
     <div className="menuDisplay">

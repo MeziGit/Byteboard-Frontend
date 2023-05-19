@@ -4,6 +4,11 @@ import { useNavigate } from "react-router-dom"
 import { Home } from "./Home"
 
 
+/**
+ * Displays the user's information
+ * @param {Object} props
+ * @returns A card with the user's information
+ */
 function DisplayUser(props) {
 
     const navigate = useNavigate()

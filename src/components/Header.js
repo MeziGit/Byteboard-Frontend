@@ -3,13 +3,12 @@ import { Navbar } from "react-bootstrap";
 import "./App.css";
 import NavButton from "./NavButton";
 import { NameForm } from "./NameForm";
-import  {LoggedInContext}  from "./App";
+import { LoggedInContext } from "./App";
 
 import { useContext } from 'react';
 import { LoginForm } from "./LoginForm";
 import { RegisterForm } from "./RegisterForm";
 import LogoutButton from "./LogoutButton";
-
 
 
 /**
@@ -18,15 +17,9 @@ import LogoutButton from "./LogoutButton";
  */
 function Header() {
 
-
-    
     return (
-
-     
         <div>
-            
-
-          <br/>
+            <br />
             <Navbar id="header">
                 <img id="byteboard-title-image" src={process.env.PUBLIC_URL + "/images/title.png"} alt="title" />
                 <NavButton to="/" label="Login/Register" />
@@ -35,14 +28,12 @@ function Header() {
                 <NavButton to="/about" label="About Us" />
 
                 <NavButton to="/contact" label="Contact Us" />
-                
+
                 <NavButton to="/jobs" label="Jobs" />
                 <NavButton to="/profile" label="Profile" />
                 <NavButton to="/settings" label="Settings" />
 
-            
-               
-               <LogoutButton/>
+                <LogoutButton />
             </Navbar>
         </div>
     )
