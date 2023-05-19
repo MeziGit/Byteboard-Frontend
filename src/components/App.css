@@ -368,6 +368,27 @@ width: 30em;
 }
 
 
+.navbutton {
+  border: "none";
+  color: white;
+  padding: "0.4rem 32px";
+  text-align: "center";
+  text-decoration: "none";
+  display: "inline-block";
+  font-size: 1.4rem;
+  font-family: var(--font-primary);
+  border-radius: 1rem;
+}
+
+.navbutton-active {
+  background-color: var(--colour-secondary);
+}
+
+.navbutton-inactive {
+  background-color: var(--colour-primary);
+}
+
+
 .home {
   display: flex;
   flex-direction: row;
