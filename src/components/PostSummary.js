@@ -294,10 +294,10 @@ function PostSummary({ post, deletePost, updatePost,deletePostAdmin }) {
             <button onClick={handleLike} className="post-vote-button"><img className="post-vote-button post-vote-img" src={process.env.PUBLIC_URL + `/images/Like_${userVote ? (userVote == 1 ? "enabled" : "disabled") : "disabled"}.png`} /></button>
             <h4 className="post-vote-score">{postScore && postScore}</h4>
             <button onClick={handleDislike} className="post-vote-button"><img className="post-vote-button post-vote-img" src={process.env.PUBLIC_URL + `/images/Dislike_${userVote ? (userVote == -1 ? "enabled" : "disabled") : "disabled"}.png`} /></button>
+<br/><br/>
+            <h4 className="post-summary post-summary-item post-summary-comments">[{currentPost.comments.length} comment(s)]</h4>
 
-            <h4 className="post-summary post-summary-item post-summary-comments">{currentPost.comments.length} Comments</h4>
-
-            <br />
+            <br /><br/>
             <CommentForm id={post._id} />
             <br /><br />
             {deletePost && <button type="button" class="btn btn-warning" onClick={handleDelete}>Delete Post</button>}
