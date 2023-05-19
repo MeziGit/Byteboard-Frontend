@@ -1,5 +1,9 @@
 import { useState } from "react"
 
+/**
+ * Provides a form to allow a user to change their username
+ * @returns A form to change the username
+ */
 function UsernameChangeForm() {
     const [username, setUsername] = useState(null)
 

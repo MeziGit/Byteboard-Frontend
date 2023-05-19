@@ -55,7 +55,7 @@ function PostSummary({ post, deletePost, updatePost,deletePostAdmin }) {
         }
 
     }
-
+    // Gets the score of the post
     const getPostScore = async function () {
         try {
             const requestOptions = {
@@ -78,6 +78,7 @@ function PostSummary({ post, deletePost, updatePost,deletePostAdmin }) {
         }
     }
 
+    // Gets the user's vote on the post
     const getUserVote = async function () {
         try {
             const requestOptions = {
@@ -150,9 +151,11 @@ function PostSummary({ post, deletePost, updatePost,deletePostAdmin }) {
         }
     }
 
+    // Handles the link button
     const handleLike = async function () {
         handleVote(1);
     }
+    // Handles the dislike button
     const handleDislike = async function () {
         handleVote(-1);
     }
@@ -164,6 +167,7 @@ function PostSummary({ post, deletePost, updatePost,deletePostAdmin }) {
         getPostScore();
     }, []);
 
+    //Handles the delete post button
     const handleDelete = async (event) => {
         try {
 

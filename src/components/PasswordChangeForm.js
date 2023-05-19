@@ -1,5 +1,9 @@
 import {useState } from "react"
 
+/**
+ * Provides a forum to allow a user to change their password
+ * @returns A form to change the password of a user
+ */
 function PasswordChangeForm() {
     const [currentPassword, setPassword] = useState(null)
 
