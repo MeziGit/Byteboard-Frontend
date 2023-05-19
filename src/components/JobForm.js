@@ -6,8 +6,8 @@ import React, { useEffect, useState } from 'react';
  */
 function JobForm() {
 
-    const [jobTitle, setJobTitle] = useState([])
-    const [jobContent, setJobContent] = useState([])
+    const [jobTitle, setJobTitle] = useState(null)
+    const [jobContent, setJobContent] = useState(null)
 
 
 
