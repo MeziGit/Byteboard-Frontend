@@ -14,7 +14,7 @@ try{
                 {posts.map((post) =>(
                    
                 
-                    <PostSummary post={post}/>
+                    <PostSummary post={post} deletePost={true}/>
                    
                 ))}
             
