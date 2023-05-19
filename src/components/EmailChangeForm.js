@@ -54,8 +54,9 @@ function EmailChangeForm() {
 
     return (
         <form onSubmit={handleSubmit}>
-            <label htmlFor="email">Email Change: </label>
-            <input type="text" name="email" placeholder="Email..." onChange={(e) => setEmail(e.target.value)} />
+            <label htmlFor="email">Email Change:   </label>
+            <br/>
+            <input type="text" name="email" placeholder="New Email..." onChange={(e) => setEmail(e.target.value)} />
 
 
             {email && <button type="submit" class="btn btn-warning">Submit</button>}

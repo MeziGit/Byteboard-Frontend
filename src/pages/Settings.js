@@ -2,15 +2,12 @@ import DeleteAccountButton from "../components/DeleteAccountButton"
 import { EmailChangeForm } from "../components/EmailChangeForm"
 import { PasswordChangeForm } from "../components/PasswordChangeForm"
 import { UsernameChangeForm } from "../components/UsernameChangeForm"
+import "../components/App.css"
 
-/**
- * Provides a settings page for the user
- * @returns The settings page
- */
 function Settings()
 {
     return(
-        <div>
+        <div className="settings">
        <UsernameChangeForm/>     
 <EmailChangeForm/>
 <PasswordChangeForm/>

@@ -10,11 +10,11 @@ function ListPosts({ posts }) {
             <div>
 
 
-                {posts.map((post) => (
-
-
-                    <PostSummary post={post} />
-
+                {posts.map((post) =>(
+                   
+                
+                    <PostSummary post={post} deletePost={true} updatePost={true}/>
+                   
                 ))}
 
             </div>

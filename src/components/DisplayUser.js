@@ -1,8 +1,5 @@
 import Card from "./Card"
 import './App.css'
-import { useNavigate } from "react-router-dom"
-import { Home } from "./Home"
-
 
 /**
  * Displays the user's information
@@ -11,7 +8,6 @@ import { Home } from "./Home"
  */
 function DisplayUser(props) {
 
-    const navigate = useNavigate()
 
 let sendMailUrl = `mailto:“${props.user.email}”`
 
@@ -31,7 +27,7 @@ let sendMailUrl = `mailto:“${props.user.email}”`
                         {props.heading}
                         {props.user.username && <h1>{props.user.username}</h1>}
                         <a href={sendMailUrl}>
-                        {props.user.email && <h2>{props.user.email}</h2>}
+                        {props.user.email && <h3>{props.user.email}</h3>}
                         </a>
 
 

@@ -1,9 +1,9 @@
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
-import { Navbar } from "react-bootstrap";
 import { AllComments } from "./AllComments";
 import { CommentForm } from "./CommentForm";
+import { ListTopics } from "./ListTopics";
 
 const MAX_CONTENT_LENGTH = 300;
 
@@ -47,29 +47,16 @@ async function handleVote(id, vote) {
     }
 }
 
-/**
- * A component that displays a summary of a post
- * @param {Object} post - The post object containing the post information
- * @returns {JSX.Element} The rendered component
- */
-function PostSummary({ post }) {
+
+function PostSummary({ post, deletePost, updatePost }) {
     const [author, setAuthor] = useState(null);
     const dateCreated = new Date(post.dateCreated);
     const content = post.postContent.length > MAX_CONTENT_LENGTH ? post.postContent.substring(0, MAX_CONTENT_LENGTH) + "..." : post.postContent;
 
-
-    /**
-     * provides a number
-     * @param {int} num A number
-     * @returns a number with a leading zero if it is less than 10
-     */
     const getNumber = function (num) {
         return num > 10 ? num.toString() : "0" + num.toString();
     }
 
-    /**
-    * Retrieves the author information for the post.
-    */
     const getAuthor = async function () {
         const requestOptions = {
             method: "GET",
@@ -121,19 +108,157 @@ function PostSummary({ post }) {
     }
 
 
+    const handleDelete = async (event) => {
+        try {
+
+
+            event.preventDefault()
+
+            const requestOptions = {
+                method: "DELETE",
+                credentials: "include",
+                body: JSON.stringify({
+                    postId: post._id
+
+                }),
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8"
+                }
+            }
+
+            const response = await fetch("http://localhost:1339/posts", requestOptions)
+
+            if (response.status === 200) {
+                alert("Post deleted")
+
+            }
+            else {
+
+                let result = await response.json()
+                alert(result.errorMessage)
+
+            }
+        }
+        catch (error) {
+            alert(error.message)
+        }
+    }
+
+
+    const [titleUpdate, setTitleUpdate] = useState(null)
+    const [contentUpdate, setContentUpdate] = useState(null)
+
+
+    const handleTitle = async (event) => {
+        try {
+
+
+            event.preventDefault()
+
+            const requestOptions = {
+                method: "PUT",
+                credentials: "include",
+                body: JSON.stringify({
+                    postId: post._id,
+                    postTitle: titleUpdate
+                }),
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8"
+                }
+            }
+
+            const response = await fetch("http://localhost:1339/posts", requestOptions)
+
+            if (response.status === 200) {
+                alert("Title updated")
+
+            }
+            else {
+
+                let result = await response.json()
+                alert(result.errorMessage)
+
+            }
+        }
+        catch (error) {
+            alert(error.message)
+        }
+
+
+    }
+
+    const handleContent = async (event) => {
+        try {
+
+
+            event.preventDefault()
+
+            const requestOptions = {
+                method: "PUT",
+                credentials: "include",
+                body: JSON.stringify({
+                    postId: post._id,
+                    postContent: contentUpdate
+                }),
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8"
+                }
+            }
+
+            const response = await fetch("http://localhost:1339/posts", requestOptions)
+
+            if (response.status === 200) {
+                alert("Content updated")
+
+            }
+            else {
+
+                let result = await response.json()
+                alert(result.errorMessage)
+
+            }
+        }
+        catch (error) {
+            alert(error.message)
+        }
+
+
+    }
 
     return (
         <div className="post-summary-container">
+            <ListTopics topics={post.topics} />
             <h3 className="post-summary">{post.postTitle}</h3>
             <h4 className="post-summary post-summary-item">By {author && author.username}</h4>
             <h4 className="post-summary post-summary-item">{dateCreated.getFullYear()}-{getNumber(dateCreated.getMonth() + 1)}-{getNumber(dateCreated.getDate())}</h4>
             <p className="post-summary-desc">{content}</p>
 
+
+            <AllComments id={post._id} />
+
             <button type="button" class="btn btn-outline-success" onClick={handleLike}>Like</button>
             <button type="button" class="btn btn-danger" onClick={handleDislike}>Dislike</button>
 
-            <AllComments id={post._id} />
+            <br /><br />
             <CommentForm id={post._id} />
+
+
+            <br />
+            {updatePost && <label htmlFor="titleUpdate">Update Title:   </label>}
+            <br />
+            {updatePost && <input type="text" name="titleUpdate" placeholder="New Title..." onChange={(e) => setTitleUpdate(e.target.value)} />}
+
+            <br /><br />
+            {titleUpdate && <button type="button" class="btn btn-info" onClick={handleTitle}>Update</button>}
+            <br />
+            {updatePost && <label htmlFor="contentUpdate">Update Content:   </label>}
+            <br />
+            {updatePost && <input type="text" name="contentUpdate" placeholder="New Content..." onChange={(e) => setContentUpdate(e.target.value)} />}
+            <br /><br />
+            {contentUpdate && <button type="button" onClick={handleContent} class="btn btn-info">Update</button>}
+
+            <br /><br />
+            {deletePost && <button type="button" class="btn btn-warning" onClick={handleDelete}>Delete Post</button>}
         </div>
     )
 }

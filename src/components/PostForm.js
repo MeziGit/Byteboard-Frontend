@@ -61,25 +61,29 @@ function PostForm() {
         <form onSubmit={handleSubmit} className="post" title="Post">
             <h1>POST</h1>
             <div>
-                <input type="checkbox" id="vehicle1" value="Programming" />
-                <label for="vehicle1" > Programming</label>
+      
+                <label for="vehicle1" > <i>Programming</i></label>
+                <input type="checkbox" id="vehicle1" value="Programming"/>
+          
+                <label for="vehicle2"><i> Hardware</i></label>
                 <input type="checkbox" id="vehicle2" value="Hardware" />
-                <label for="vehicle2"> Hardware</label>
 
+                <label for="vehicle3"> <i>Virtual Machines</i></label>
                 <input type="checkbox" id="vehicle3" value="Virtual Machines" />
-                <label for="vehicle3"> Virtual Machines</label>
+                
+                <label for="vehicle4"><i>Networking</i> </label>
+                <input type="checkbox" id="vehicle4" value="Networking" />
 
-                <input type="checkbox" id="vehicle4" value="Hardware" />
-                <label for="vehicle4"> Operating Systems</label>
+                <label for="vehicle5"><i>Other</i></label>
                 <input type="checkbox" id="vehicle5" value="Other" />
-                <label for="vehicle5">Other</label>
+
             </div>
 
             <label htmlFor="title">Title: </label><br />
             <input type="text" name="title" placeholder="Title..." onChange={(e) => setTitle(e.target.value)} />
             <br />
 
-            <label htmlFor="title">Content: </label>
+            <label htmlFor="title">Content: </label><br/>
             <input type="text" name="title" placeholder="Content..." onChange={(e) => setContent(e.target.value)} />
             <br />
 

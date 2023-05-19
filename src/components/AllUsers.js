@@ -21,7 +21,11 @@ function AllUsers() {
 
     return (
         <>
+
+          
+<div className="users">
             <ListUsers users={users} />
+            </div>
         </>
     )
 }

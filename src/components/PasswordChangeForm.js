@@ -1,11 +1,5 @@
-import { useContext, useState } from "react"
-import { useNavigate } from "react-router-dom"
-import { LoggedInContext } from "./App";
+import {useState } from "react"
 
-/**
- * Provides a simple forum to allow a user to update their password
- * @returns A form to change the user's password
- */
 function PasswordChangeForm() {
     const [currentPassword, setPassword] = useState(null)
 
@@ -62,10 +56,11 @@ function PasswordChangeForm() {
     return (
         <form onSubmit={handleSubmit}>
             <label htmlFor="currentPassword">Password Change: </label>
+            <br/>
             <input type="password" name="currentPassword" placeholder="New Password..." onChange={(e) => setPassword(e.target.value)} />
 
 
-            {currentPassword && <button type="submit">Submit</button>}
+            {currentPassword && <button type="submit" class="btn btn-warning">Submit</button>}
         </form>
     )
 }
