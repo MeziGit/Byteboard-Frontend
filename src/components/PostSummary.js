@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Navbar } from "react-bootstrap";
 import { AllComments } from "./AllComments";
 import { CommentForm } from "./CommentForm";
+import { ListTopics } from "./ListTopics";
 
 const MAX_CONTENT_LENGTH = 300;
 
@@ -98,6 +99,7 @@ function PostSummary({post}) {
     
     return (
         <div className="post-summary-container">
+            <ListTopics topics={post.topics}/>
             <h3 className="post-summary">{post.postTitle}</h3>
             <h4 className="post-summary post-summary-item">By {author && author.username}</h4>
             <h4 className="post-summary post-summary-item">{dateCreated.getFullYear()}-{getNumber(dateCreated.getMonth() + 1)}-{getNumber(dateCreated.getDate())}</h4>
