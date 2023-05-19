@@ -206,6 +206,7 @@ function FullPost() {
                     <div className="comments-container">
                         <h2>Comments ({post.comments.length})</h2>
                         <div>
+                        <Comment commentId={post.comments[0]}/>
                             {post.comments.map(commentId => {
                                 <Comment commentId={commentId}/>
                             })}

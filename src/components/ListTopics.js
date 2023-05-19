@@ -7,12 +7,12 @@ function ListTopics({topics})
     try{
     
         return(
-            <div>
+            <div className="topic-container">
 
                     {topics.map((topic) =>(
                        
               
-                        <h3>({topic.topicName})</h3>
+                        <h4>({topic.topicName})</h4>
                        
                     ))}
            
