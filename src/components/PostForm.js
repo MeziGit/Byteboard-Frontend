@@ -57,15 +57,17 @@ function PostForm() {
         <form onSubmit={handleSubmit} className="post" title="Post">
             <h1>POST</h1>
             <div>
-                <input type="checkbox" id="vehicle1" value="Programming" />
+                <div>
+                <input type="checkbox" id="vehicle1" value="Programming"/>
                 <label for="vehicle1" > Programming</label>
+                </div>
                 <input type="checkbox" id="vehicle2" value="Hardware" />
                 <label for="vehicle2"> Hardware</label>
 
                 <input type="checkbox" id="vehicle3" value="Virtual Machines" />
                 <label for="vehicle3"> Virtual Machines</label>
 
-                <input type="checkbox" id="vehicle4" value="Hardware" />
+                <input type="checkbox" id="vehicle4" value="Operating Systems" />
                 <label for="vehicle4"> Operating Systems</label>
                 <input type="checkbox" id="vehicle5" value="Other" />
                 <label for="vehicle5">Other</label>
