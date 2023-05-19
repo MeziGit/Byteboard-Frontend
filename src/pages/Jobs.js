@@ -2,15 +2,41 @@ import React, { useEffect, useState } from 'react';
 
 
 /**
- * 
+ * Displays all job listings and a forum to create a job listing
  */
 function Jobs() {
   const [jobListings, setJobListings] = useState([]);
 
+  const createJobListing = async () => {
+    const response = await fetch(process.env.REACT_APP_BACKEND + "/jobs",
+      { method: "POST", credentials: "include" });
 
-  const createJobListing = () => {
-    
-  };
+    let result = await response.json()
+
+    setJobListings(result)
+  }
+
+  const getJobs = async () => {
+
+    try {
+        const response = await fetch(process.env.REACT_APP_BACKEND + "/jobs",
+            { method: "GET", credentials: "include" });
+
+
+        let result = await response.json()
+
+
+        setJobListings(result)
+
+    }
+    catch (error) {
+        alert(error.message)
+    }
+}
+
+useEffect(() => {
+    getJobs()
+}, [])
 
   return (
     <div className="jobs">
