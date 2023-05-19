@@ -18,6 +18,7 @@ function PostSummary({post}) {
     let currentPost = post;
 
     const dateCreated = new Date(currentPost.dateCreated);
+    const dateEdited = currentPost.dateEdited ? new Date(currentPost.dateEdited) : null;
     const content = currentPost.postContent.length > MAX_CONTENT_LENGTH ? currentPost.postContent.substring(0, MAX_CONTENT_LENGTH) + "..." : currentPost.postContent;
 
     
@@ -160,13 +161,14 @@ function PostSummary({post}) {
         getPostScore();
     }, []);
     
-    console.log(userVote);
+    
     
     return (
         <div className="post-summary-container">
-            <NavLink to={process.env.REACT_APP_FRONTEND_URL + "/posts/" + currentPost._id}><h3 className="post-summary">{currentPost.postTitle}</h3></NavLink>
+            <NavLink to={"/posts/" + currentPost._id}><h3 className="post-summary">{currentPost.postTitle}</h3></NavLink>
             <h4 className="post-summary post-summary-item">By {author && author.username}</h4>
             <h4 className="post-summary post-summary-item">{dateCreated.getFullYear()}-{getNumber(dateCreated.getMonth() + 1)}-{getNumber(dateCreated.getDate())}</h4>
+            {dateEdited && <h4 className="post-summary post-summary-item">(Edited {dateEdited.getFullYear()}-{getNumber(dateEdited.getMonth() + 1)}-{getNumber(dateEdited.getDate())})</h4>}
             <p className="post-summary-desc">{content}</p>
 
             <button onClick={handleLike} className="post-vote-button"><img className="post-vote-button post-vote-img" src={process.env.PUBLIC_URL + `/images/Like_${userVote ? (userVote == 1 ? "enabled" : "disabled") : "disabled"}.png`}/></button>

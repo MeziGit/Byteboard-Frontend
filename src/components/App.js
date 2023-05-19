@@ -14,6 +14,7 @@ import UserProfile from '../pages/UserProfile';
 import Profile from '../pages/Profile';
 import Jobs from '../pages/Jobs';
 import Forum from './Pages/Forum';
+import FullPost from '../pages/FullPost';
 
 
 const LoggedInContext = createContext({
@@ -47,6 +48,7 @@ function App() {
           <Route path="profile/:username" element={<UserProfile/>}/>
           <Route path="profile" element={<Profile/>}/>
           <Route path="forum" element={<Forum/>}/>
+          <Route path="posts/:postId" element={<FullPost/>}/>
         </Route>
       </Routes>
 
