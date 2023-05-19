@@ -11,9 +11,9 @@ function About() {
         <div>
             <h1>We're really awesome</h1>
 
-            {employee === "Ryan" && <h2>Ryan is good programmer and loves movies</h2>}
-            {employee === "Caden" && <h2>Caden is very smart and went to university Yale</h2>}
-            {employee === "Jeff" && <h2>Jeff's motivation is everything</h2>}
+            {employee === "Ryan" && <h2>Ryan is good programmer and  he's motivation is to persuade rookies into getting experience where they can</h2>}
+            {employee === "Caden" && <h2>Caden is very smart and went to university Yale, his first job was a little company that helped him get up and now works at Google</h2>}
+            {employee === "Jeff" && <h2>Jeff's motivation is everything, the idea of this website to make people interact with eachother while searching for jobs is exhilarating</h2>}
 
             <a href="/about/Ryan">
                 <p>Ryan</p>
