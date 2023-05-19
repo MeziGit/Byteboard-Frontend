@@ -1,5 +1,6 @@
 import Card from "./Card"
 import './App.css'
+import DeleteAccountButtonAdmin from "./DeleteAccountButtonAdmin"
 
 /**
  * Displays the user's information
@@ -10,6 +11,7 @@ function DisplayUser(props) {
 
 
 let sendMailUrl = `mailto:“${props.user.email}”`
+
 
     return (
 
@@ -29,11 +31,11 @@ let sendMailUrl = `mailto:“${props.user.email}”`
                         <a href={sendMailUrl}>
                         {props.user.email && <h3>{props.user.email}</h3>}
                         </a>
-
-
+{props.deleteAccount && <DeleteAccountButtonAdmin username={props.user.username}/>}
                     </>
                 }
 
+              
             />
 
         </>

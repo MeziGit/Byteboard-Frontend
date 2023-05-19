@@ -53,7 +53,7 @@ function AllPosts() {
     }
     catch (error) {
 
-        navigate("/usererror", { state: { errorMessage: error.message } })
+       // navigate("/usererror", { state: { errorMessage: error.message } })
     }
 }
 

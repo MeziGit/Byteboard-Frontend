@@ -1,11 +1,12 @@
 import { useState } from "react"
 import { ListUsers } from "./ListUsers"
+import { useEffect } from "react";
 
 /**
  * Gets all the users from a fetch request
  * @returns A list of all the users
  */
-function AllUsers() {
+function AllUsers({deleteAdmin}) {
     const [users, setUsers] = useState([])
 
     const callGetAllUsers = async () => {
@@ -17,14 +18,22 @@ function AllUsers() {
 
         setUsers(result)
     };
-    callGetAllUsers()
+
+
+
+
+
+    useEffect(() => {
+        callGetAllUsers()
+      }, [])
+
 
     return (
         <>
 
           
 <div className="users">
-            <ListUsers users={users} />
+            <ListUsers users={users} deleteAccount={deleteAdmin} />
             </div>
         </>
     )
