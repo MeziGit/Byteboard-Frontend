@@ -1,10 +1,7 @@
-import { useContext, useState } from "react"
-import { useNavigate } from "react-router-dom"
-import { LoggedInContext } from "./App";
-
+import { useState } from "react"
 
 function UsernameChangeForm() {
-    const [username,setUsername] = useState(null)
+    const [username, setUsername] = useState(null)
 
 
     const handleSubmit = async (event) => {
@@ -27,7 +24,7 @@ function UsernameChangeForm() {
                 method: "PUT",
                 credentials: "include",
                 body: JSON.stringify({
-                    username:username,
+                    username: username,
                     currentPassword: password
                 }),
                 headers: {
@@ -60,8 +57,8 @@ function UsernameChangeForm() {
             <label htmlFor="username">Username Change: </label>
             <input type="text" name="username" placeholder="New Username..." onChange={(e) => setUsername(e.target.value)} />
 
-
-            {username && <button type="submit">Submit</button>}
+            <br /><br />
+            {username && <button type="submit" class="btn btn-warning">Submit</button>}
         </form>
     )
 }
