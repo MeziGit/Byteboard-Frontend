@@ -16,7 +16,7 @@ function DeleteAccountButton() {
             }
 
 
-            const res = await fetch("http://localhost:1339/session/getUsername",
+            const res = await fetch("http://localhost:1339/session/getSelf",
                 { method: "GET", credentials: "include" });
 
             if (res.status !== 200) throw new Error("User not logged in")

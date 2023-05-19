@@ -1,16 +1,28 @@
 import React from "react";
+import { useContext } from 'react';
 import { useEffect } from "react";
 import { useState } from "react";
-import { Navbar } from "react-bootstrap";
+import {NavLink} from "react-router-dom";
+import  {LoggedInContext}  from "./App";
 const MAX_CONTENT_LENGTH = 300;
+const LIKE_DISLIKE_SIZE = "20px";
 
 
+/**
+ * Represents a summary of a post
+ */
 function PostSummary({post}) {
+    const [isLoggedIn, setIsLoggedIn] = useContext(LoggedInContext);
     const [author, setAuthor] = useState(null);
-    const dateCreated = new Date(post.dateCreated);
-    const content = post.postContent.length > MAX_CONTENT_LENGTH ? post.postContent.substring(0, MAX_CONTENT_LENGTH) + "..." : post.postContent;
+    const [userVote, setUserVote] = useState(null);
+    const [postScore, setPostScore] = useState(null);
+    let currentPost = post;
 
+    const dateCreated = new Date(currentPost.dateCreated);
+    const content = currentPost.postContent.length > MAX_CONTENT_LENGTH ? currentPost.postContent.substring(0, MAX_CONTENT_LENGTH) + "..." : currentPost.postContent;
 
+    
+    //#region get functions
     const getNumber = function(num) {
         return num > 10 ? num.toString() : "0" + num.toString(); 
     }
@@ -26,7 +38,7 @@ function PostSummary({post}) {
 
         let response;
         try {
-            response = await fetch(process.env.REACT_APP_PUBLIC_URL + "/users/ids/" + post.authorId, requestOptions);
+            response = await fetch(process.env.REACT_APP_PUBLIC_URL + "/users/ids/" + currentPost.authorId, requestOptions);
             
             if (response.status === 200) {
                 const user = await response.json();
@@ -40,17 +52,129 @@ function PostSummary({post}) {
         }
        
     }
+
+    const getPostScore = async function() {
+        try {
+            const requestOptions = {
+                method: "GET",
+                credentials: "include",
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8"
+                }
+            }
+    
+            const result = await fetch(process.env.REACT_APP_PUBLIC_URL + "/posts/ids/" + currentPost._id.toString(), requestOptions);
+
+            if (result.status === 200) {
+                const newPost = await result.json();
+                setPostScore(newPost.score);
+            }
+        }
+        catch(error) {
+            console.log(error);
+        }
+    }
+
+    const getUserVote = async function() {
+        try {
+            const requestOptions = {
+                method: "GET",
+                credentials: "include",
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8"
+                }
+            }
+            
+            const postResult = await fetch(process.env.REACT_APP_PUBLIC_URL + "/posts/ids/" + currentPost._id.toString(), requestOptions);
+            const loginResult = await fetch(process.env.REACT_APP_PUBLIC_URL + "/session/getSelf", requestOptions);
+            let fetchedPost;
+
+            if (postResult.status === 200) {
+                fetchedPost = await postResult.json();
+            }
+
+            if (loginResult.status === 200) {
+                const user = await loginResult.json();
+
+                if (fetchedPost.userVotes[user._id]) {
+                    setUserVote(fetchedPost.userVotes[user._id]);
+                }
+                else
+                    setUserVote(0);
+                setIsLoggedIn(true);
+            }
+            else {
+                setUserVote(0);
+                setIsLoggedIn(false);
+            }
+        }
+        catch(error) {
+            console.error(error);
+        }
+    }
+    //#endregion
+
+    const handleVote = async function(vote) {
+        try {
+            if (isLoggedIn) {
+                const requestOptions = {
+                    method: "PUT",
+                    credentials: "include",
+                    body: JSON.stringify({
+                        postId: currentPost._id.toString(),
+                        vote: vote
+                    }),
+                    headers: {
+                        "Content-type": "application/json; charset=UTF-8"
+                    }
+                }
+        
+                const result = await fetch(process.env.REACT_APP_PUBLIC_URL + "/posts/vote", requestOptions);
+    
+                if (result.status === 200) {
+                    getPostScore();
+                    getUserVote();
+                }
+                else {
+                    alert(result.statusText);
+                }
+            }
+            else
+                alert("Sign up or log in to vote on posts");
+        }
+        catch(error) {
+            console.error(error);
+        }
+    }
+
+    const handleLike = async function() {
+        handleVote(1);
+    }
+    const handleDislike = async function() {
+        handleVote(-1);
+    }
+
+
     useEffect(() => {
         getAuthor();
-    }, [])
-
+        getUserVote();
+        getPostScore();
+    }, []);
+    
+    console.log(userVote);
     
     return (
         <div className="post-summary-container">
-            <h3 className="post-summary">{post.postTitle}</h3>
+            <NavLink to={process.env.REACT_APP_FRONTEND_URL + "/posts/" + currentPost._id}><h3 className="post-summary">{currentPost.postTitle}</h3></NavLink>
             <h4 className="post-summary post-summary-item">By {author && author.username}</h4>
             <h4 className="post-summary post-summary-item">{dateCreated.getFullYear()}-{getNumber(dateCreated.getMonth() + 1)}-{getNumber(dateCreated.getDate())}</h4>
             <p className="post-summary-desc">{content}</p>
+
+            <button onClick={handleLike} className="post-vote-button"><img className="post-vote-button post-vote-img" src={process.env.PUBLIC_URL + `/images/Like_${userVote ? (userVote == 1 ? "enabled" : "disabled") : "disabled"}.png`}/></button>
+            <h4 className="post-vote-score">{postScore && postScore}</h4>
+            <button onClick={handleDislike} className="post-vote-button"><img className="post-vote-button post-vote-img" src={process.env.PUBLIC_URL + `/images/Dislike_${userVote ? (userVote == -1 ? "enabled" : "disabled") : "disabled"}.png`}/></button>
+
+            <h4 className="post-summary post-summary-item post-summary-comments">{currentPost.comments.length} Comments</h4>
         </div>
     )
 }
