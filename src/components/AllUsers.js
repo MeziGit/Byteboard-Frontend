@@ -20,8 +20,9 @@ function AllUsers() {
         <>
 
           
-
+<div className="users">
             <ListUsers users={users} />
+            </div>
         </>
     )
 }
