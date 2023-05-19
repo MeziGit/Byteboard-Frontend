@@ -6,8 +6,9 @@ import { useNavigate } from "react-router-dom"
  * @param {Object} props
  * @returns A list of users
  */
-function ListUsers({ users }) {
+function ListUsers({ users,deleteAccount }) {
     const navigate = useNavigate()
+
     try {
         return (
             <div>
@@ -15,7 +16,7 @@ function ListUsers({ users }) {
 
                 {users.map((user) => (
 
-                    <DisplayUser user={user} />
+                    <DisplayUser user={user} deleteAccount={deleteAccount} />
 
 
                 ))}
