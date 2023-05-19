@@ -224,6 +224,10 @@ width: 30em;
   margin-bottom: 3em;
 }
 
+#home-title {
+  padding-bottom: 4rem;
+}
+
 /*===================== FORUM STYLES =====================*/
 .post-summary-container {
   text-align: left;
