@@ -61,7 +61,7 @@ function JobForm() {
             <input type="text" placeholder="Job Title" onChange={(e) => setJobTitle(e.target.value)} />
             <input type="text" placeholder="Job Description" onChange={(e) => setJobContent(e.target.value)} />
 
-            <button class="btn btn-light" onClick={createJobListing}>Create Job Listing</button>
+          {jobTitle && jobContent &&  <button class="btn btn-light" onClick={createJobListing}>Create Job Listing</button>}
 </div>
             <h1>List of job offers</h1>
         </div>
