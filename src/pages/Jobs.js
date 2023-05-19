@@ -8,7 +8,7 @@ function Jobs() {
   const [jobListings, setJobListings] = useState([]);
 
   const createJobListing = async () => {
-    const response = await fetch(process.env.REACT_APP_BACKEND + "/jobs",
+    const response = await fetch(process.env.REACT_APP_PUBLIC_URL + "/jobs",
       { method: "POST", credentials: "include" });
 
     let result = await response.json()
@@ -19,9 +19,8 @@ function Jobs() {
   const getJobs = async () => {
 
     try {
-        const response = await fetch(process.env.REACT_APP_BACKEND + "/jobs",
+        const response = await fetch(process.env.REACT_APP_PUBLIC_URL + "/jobs",
             { method: "GET", credentials: "include" });
-
 
         let result = await response.json()
 
@@ -47,12 +46,13 @@ useEffect(() => {
       <button onClick={createJobListing}>Create Job Listing</button>
 
       <h1>List of job offers</h1>
-      {jobListings.map((job) => (
-        <div key={job.id}>{job.title}</div>
-        //We need to configure the db for this to work
-      ))}
     </div>
   );
 }
+
+//{jobListings.map((job) => (
+  //<div key={job.id}>{job.title}</div>
+  //We need to configure the db for this to work
+//))}
 
 export default Jobs;
