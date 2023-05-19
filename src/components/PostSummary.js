@@ -5,7 +5,6 @@ import { useState } from "react";
 import {NavLink} from "react-router-dom";
 import  {LoggedInContext}  from "./App";
 const MAX_CONTENT_LENGTH = 300;
-const LIKE_DISLIKE_SIZE = "20px";
 
 
 /**
