@@ -5,6 +5,7 @@ import { useState } from "react";
 import {NavLink} from "react-router-dom";
 import  {LoggedInContext}  from "./App";
 import { ListTopics } from "./ListTopics";
+import { CommentForm } from "./CommentForm";
 const MAX_CONTENT_LENGTH = 300;
 
 
@@ -309,6 +310,8 @@ function PostSummary({post,deletePost,updatePost}) {
             <br /><br />
             {contentUpdate && <button type="button" onClick={handleContent} class="btn btn-info">Update</button>}
 
+<br/>
+<CommentForm id={post._id}/>
             <br /><br />
             {deletePost && <button type="button" class="btn btn-warning" onClick={handleDelete}>Delete Post</button>}
         </div>
