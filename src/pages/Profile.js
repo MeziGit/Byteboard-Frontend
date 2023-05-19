@@ -27,9 +27,9 @@ const Profile = () => {
       navigate("/", { state: { errorMessage: "You are not logged in" } })
     }
 
-    const username = await res.text();
+    const user = await res.json();
 
-    const response = await fetch(`${process.env.REACT_APP_PUBLIC_URL}/users/usernames/${username}`)
+    const response = await fetch(`${process.env.REACT_APP_PUBLIC_URL}/users/usernames/${user.username}`)
 
     let result = await response.json()
 
