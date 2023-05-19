@@ -1,7 +1,4 @@
-import { useContext, useState } from "react"
-import { useNavigate } from "react-router-dom"
-import { LoggedInContext } from "./App";
-
+import {useState } from "react"
 
 function PasswordChangeForm() {
     const [currentPassword,setPassword] = useState(null)
@@ -66,7 +63,7 @@ function PasswordChangeForm() {
             <input type="password" name="currentPassword" placeholder="New Password..." onChange={(e) => setPassword(e.target.value)} />
 
 
-            {currentPassword && <button type="submit">Submit</button>}
+            {currentPassword && <button type="submit" class="btn btn-warning">Submit</button>}
         </form>
     )
 }
