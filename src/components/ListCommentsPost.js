@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { DisplayComment } from "./DisplayComment"
+import Comment from "./Comment"
 
 /**
  * Fetches and returns all the comments in a list
@@ -12,13 +13,11 @@ function ListCommentsPost({ comments }) {
 
 
     try {
-
         for (let i = 0; i < comments.length; i++) {
             if (comments[i] == null) {
                 comments.splice(1, i)
             }
         }
-
         return (
             <div>
 

@@ -27,7 +27,7 @@ const ColourButton = styled(Button)(({ theme }) => ({
  */
 function NavbarButton(props) {
     return (
-        <ColourButton className="btn-navbar" onClick={props.onClick}>{props.buttonText}</ColourButton>
+        <button className="btn-navbar" onClick={props.onClick}>{props.buttonText}</button>
     );
 }
 

@@ -34,8 +34,8 @@ function NavButton(props) {
 
     return (
         <NavLink to={props.to}>
-            <button style={match ? activeButtonStyle : buttonStyle}>
-                <p>{props.label}</p>
+            <button className={`navbutton${match ? " navbutton-active" : " navbutton-inactive"}`}>
+                {props.label}
             </button>
         </NavLink>
     )
