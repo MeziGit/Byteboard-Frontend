@@ -1,7 +1,6 @@
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
-import { Navbar } from "react-bootstrap";
 import { AllComments } from "./AllComments";
 import { CommentForm } from "./CommentForm";
 import { ListTopics } from "./ListTopics";
@@ -43,7 +42,7 @@ async function handleVote(id, vote) {
 }
 
 
-function PostSummary({ post, deletePost,updatePost }) {
+function PostSummary({ post, deletePost, updatePost }) {
     const [author, setAuthor] = useState(null);
     const dateCreated = new Date(post.dateCreated);
     const content = post.postContent.length > MAX_CONTENT_LENGTH ? post.postContent.substring(0, MAX_CONTENT_LENGTH) + "..." : post.postContent;
@@ -136,83 +135,81 @@ function PostSummary({ post, deletePost,updatePost }) {
     const [contentUpdate, setContentUpdate] = useState(null)
 
 
-const handleTitle = async(event)=>
-{
-    try {
+    const handleTitle = async (event) => {
+        try {
 
 
-        event.preventDefault()
+            event.preventDefault()
 
-        const requestOptions = {
-            method: "PUT",
-            credentials: "include",
-            body: JSON.stringify({
-                postId: post._id,
-postTitle:titleUpdate
-            }),
-            headers: {
-                "Content-type": "application/json; charset=UTF-8"
+            const requestOptions = {
+                method: "PUT",
+                credentials: "include",
+                body: JSON.stringify({
+                    postId: post._id,
+                    postTitle: titleUpdate
+                }),
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8"
+                }
+            }
+
+            const response = await fetch("http://localhost:1339/posts", requestOptions)
+
+            if (response.status === 200) {
+                alert("Title updated")
+
+            }
+            else {
+
+                let result = await response.json()
+                alert(result.errorMessage)
+
             }
         }
-
-        const response = await fetch("http://localhost:1339/posts", requestOptions)
-
-        if (response.status === 200) {
-            alert("Title updated")
-
+        catch (error) {
+            alert(error.message)
         }
-        else {
 
-            let result = await response.json()
-            alert(result.errorMessage)
 
-        }
-    }
-    catch (error) {
-        alert(error.message)
     }
 
-
-}
-
-const handleContent = async(event)=>
-{
-    try {
+    const handleContent = async (event) => {
+        try {
 
 
-        event.preventDefault()
+            event.preventDefault()
 
-        const requestOptions = {
-            method: "PUT",
-            credentials: "include",
-            body: JSON.stringify({
-                postId: post._id,
-postContent:contentUpdate
-            }),
-            headers: {
-                "Content-type": "application/json; charset=UTF-8"
+            const requestOptions = {
+                method: "PUT",
+                credentials: "include",
+                body: JSON.stringify({
+                    postId: post._id,
+                    postContent: contentUpdate
+                }),
+                headers: {
+                    "Content-type": "application/json; charset=UTF-8"
+                }
+            }
+
+            const response = await fetch("http://localhost:1339/posts", requestOptions)
+
+            if (response.status === 200) {
+                alert("Content updated")
+
+            }
+            else {
+
+                let result = await response.json()
+                alert(result.errorMessage)
+
             }
         }
-
-        const response = await fetch("http://localhost:1339/posts", requestOptions)
-
-        if (response.status === 200) {
-            alert("Content updated")
-
+        catch (error) {
+            alert(error.message)
         }
-        else {
 
-            let result = await response.json()
-            alert(result.errorMessage)
 
-        }
     }
-    catch (error) {
-        alert(error.message)
-    }
-
-
-}
 
     return (
         <div className="post-summary-container">
@@ -228,10 +225,10 @@ postContent:contentUpdate
             <button type="button" class="btn btn-outline-success" onClick={handleLike}>Like</button>
             <button type="button" class="btn btn-danger" onClick={handleDislike}>Dislike</button>
 
-<br/><br/>
+            <br /><br />
             <CommentForm id={post._id} />
 
- 
+
             <br />
             {updatePost && <label htmlFor="titleUpdate">Update Title:   </label>}
             <br />
