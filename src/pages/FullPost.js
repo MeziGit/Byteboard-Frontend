@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { useContext } from "react";
 import { LoggedInContext } from "../components/App";
-import Comment from "../components/Comment";
+import DisplayComment from "../components/DisplayComment";
 import { NavLink } from "react-router-dom";
 
 /**
@@ -206,10 +206,9 @@ function FullPost() {
                     <div className="comments-container">
                         <h2>Comments ({post.comments.length})</h2>
                         <div>
-                        <Comment commentId={post.comments[0]}/>
-                            {post.comments.map(commentId => {
-                                <Comment commentId={commentId}/>
-                            })}
+                            {post.comments.map((commentId) => (
+                                <h2>{<DisplayComment commentId={commentId}/>}</h2>
+                            ))}
                         </div>
                     </div>
                 </>
