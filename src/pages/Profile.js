@@ -52,7 +52,7 @@ const Profile = () => {
         <ul>
           <DisplayUser user={user} />
 
-          <h1>Description</h1>
+          <h1><u>Description</u></h1>
           <h1>{user.description}</h1>
           <h1>Reputation: {user.reputation}</h1>
 

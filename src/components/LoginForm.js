@@ -1,6 +1,5 @@
-import { useContext, useState } from "react"
+import { useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { LoggedInContext } from "./App";
 import "./App.css"
 
 /**
@@ -10,7 +9,6 @@ import "./App.css"
 function LoginForm() {
     const [username, setUsername] = useState(null)
     const [password, setPassword] = useState(null)
-    const [isLoggedIn, setIsLoggedIn] = useContext(LoggedInContext)
     const navigate = useNavigate()
 
     const handleSubmit = async (event) => {
@@ -34,12 +32,10 @@ function LoginForm() {
             if(response.status === 200)
             {
                 alert("Thanks for logging in")
-                setIsLoggedIn(true)
                 navigate("/home")
             }
             else
             {
-                setIsLoggedIn(false)
                 let result = await response.json()
                 alert(result.errorMessage)
 
