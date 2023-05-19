@@ -1,34 +1,29 @@
-import { DisplayPost } from "./DisplayPost"
-import { DisplayUser } from "./DisplayUser"
 import { useNavigate } from "react-router-dom"
+import PostSummary from "./PostSummary"
 
 
-function ListPosts({posts})
-{
-const navigate = useNavigate()
-try{
+function ListPosts({ posts }) {
+    const navigate = useNavigate()
+    try {
 
-    return(
-        <div>
+        return (
+            <div>
 
 
                 {posts.map((post) =>(
                    
                 
-                    <DisplayPost post={post}/>
+                    <PostSummary post={post} deletePost={true} updatePost={true}/>
                    
-
-              
                 ))}
-            
-        </div>
-    )
-                }
-                catch(error)
-                {
-                   
-                    navigate("/usererror", { state: { errorMessage: error.message} })
-                }
+
+            </div>
+        )
+    }
+    catch (error) {
+
+        navigate("/usererror", { state: { errorMessage: error.message } })
+    }
 }
 
-export {ListPosts}
+export { ListPosts }

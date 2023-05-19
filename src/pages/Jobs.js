@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from 'react';
 
+
+/**
+ * 
+ */
 function Jobs() {
   const [jobListings, setJobListings] = useState([]);
 

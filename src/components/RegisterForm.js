@@ -1,8 +1,13 @@
 import { useContext, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { LoggedInContext } from "./App";
+import "./App.css"
 
 
+/**
+ * Provides a registering forum for the user to create an account
+ * @returns A form for registering a new user
+ */
 function RegisterForm() {
     const [username, setUsername] = useState(null)
     const [password, setPassword] = useState(null)
@@ -27,30 +32,28 @@ function RegisterForm() {
                 }
             }
 
-if(isLoggedIn)
-{
-    alert("Logout before registering again")
+            if (isLoggedIn) {
+                alert("Logout before registering again")
 
 
-}
-else
-{
-
-            const response = await fetch(`${process.env.REACT_APP_PUBLIC_URL}/users/register`, requestOptions)
-
-            if (response.status === 200) {
-
-                alert("Successfull register")
-
-                navigate("/")
             }
             else {
 
-                let result = await response.json()
-                alert(result.errorMessage)
+                const response = await fetch(`${process.env.REACT_APP_PUBLIC_URL}/users/register`, requestOptions)
 
+                if (response.status === 200) {
+
+                    alert("Successfull register")
+
+                    navigate("/")
+                }
+                else {
+
+                    let result = await response.json()
+                    alert(result.errorMessage)
+
+                }
             }
-        }
         }
         catch (error) {
             alert(error.message)
@@ -60,7 +63,7 @@ else
 
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="login">
             <label htmlFor="username">Username</label>
             <input type="text" name="username" placeholder="Username..." onChange={(e) => setUsername(e.target.value)} />
             <br />
@@ -74,9 +77,10 @@ else
             <input type="email" name="email" placeholder="Email..." onChange={(e) => setEmail(e.target.value)} />
 
 
-            <br />
 
-            {username && password && email && <button type="submit">Register</button>}
+            <br /><br />
+            {username && password && email && <button type="submit" class="btn btn-success">Register</button>}
+            <br /><br />
         </form>
     )
 }

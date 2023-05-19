@@ -1,38 +1,31 @@
-import { useContext, useState } from "react"
-import { useNavigate } from "react-router-dom"
-import { LoggedInContext } from "./App";
-
+import {useState } from "react"
 
 function PasswordChangeForm() {
-    const [currentPassword,setPassword] = useState(null)
+    const [currentPassword, setPassword] = useState(null)
 
 
     const handleSubmit = async (event) => {
         event.preventDefault()
 
-
-
-
         try {
-
 
             const res = await fetch("http://localhost:1339/session/getUsername",
                 { method: "GET", credentials: "include" });
 
-            if (res.status !== 200) throw new Error("User not logged in")
+            if (res.status !== 200) throw new Error("You are not logged in!")
 
-            
+
             const username = await res.text();
 
             const password = prompt("Please enter your current password")
-            
+
 
             const requestOptions = {
                 method: "PUT",
                 credentials: "include",
                 body: JSON.stringify({
                     usernameToUpdate: username,
-                    password:currentPassword,
+                    password: currentPassword,
                     currentPassword: password
                 }),
                 headers: {
@@ -63,10 +56,11 @@ function PasswordChangeForm() {
     return (
         <form onSubmit={handleSubmit}>
             <label htmlFor="currentPassword">Password Change: </label>
+            <br/>
             <input type="password" name="currentPassword" placeholder="New Password..." onChange={(e) => setPassword(e.target.value)} />
 
 
-            {currentPassword && <button type="submit">Submit</button>}
+            {currentPassword && <button type="submit" class="btn btn-warning">Submit</button>}
         </form>
     )
 }

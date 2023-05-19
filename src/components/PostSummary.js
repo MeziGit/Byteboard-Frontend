@@ -7,12 +7,48 @@ import  {LoggedInContext}  from "./App";
 const MAX_CONTENT_LENGTH = 300;
 const LIKE_DISLIKE_SIZE = "20px";
 
-
 /**
- * Represents a summary of a post
+ * Handle vote thumbs up or down
+ * @param {boolean} vote The vote of the user
+ * @param {string} id The id of the post
+ * @returns The post and its comments
  */
+async function handleVote(id, vote) {
+    try {
+
+        const requestOptions = {
+            method: "PUT",
+            credentials: "include",
+            body: JSON.stringify({
+                postId: id,
+                vote: vote
+            }),
+            headers: {
+                "Content-type": "application/json; charset=UTF-8"
+            }
+        }
+
+        const response = await fetch("http://localhost:1339/posts/vote", requestOptions)
+
+        if (response.status === 200) {
+            alert("Vote submitted")
+
+        }
+        else {
+
+            let result = await response.json()
+            alert(result.errorMessage)
+
+        }
+
+    } catch (error) {
+
+        alert(error.message)
+    }
+}
+
+
 function PostSummary({post}) {
-    const [isLoggedIn, setIsLoggedIn] = useContext(LoggedInContext);
     const [author, setAuthor] = useState(null);
     const [userVote, setUserVote] = useState(null);
     const [postScore, setPostScore] = useState(null);
@@ -21,13 +57,12 @@ function PostSummary({post}) {
     const dateCreated = new Date(currentPost.dateCreated);
     const content = currentPost.postContent.length > MAX_CONTENT_LENGTH ? currentPost.postContent.substring(0, MAX_CONTENT_LENGTH) + "..." : currentPost.postContent;
 
-    
-    //#region get functions
+
     const getNumber = function(num) {
         return num > 10 ? num.toString() : "0" + num.toString(); 
     }
 
-    const getAuthor = async function() {
+    const getAuthor = async function () {
         const requestOptions = {
             method: "GET",
             credentials: "include",
@@ -38,7 +73,7 @@ function PostSummary({post}) {
 
         let response;
         try {
-            response = await fetch(process.env.REACT_APP_PUBLIC_URL + "/users/ids/" + currentPost.authorId, requestOptions);
+            response = await fetch(process.env.REACT_APP_PUBLIC_URL + "/users/ids/" + post.authorId, requestOptions);
             
             if (response.status === 200) {
                 const user = await response.json();
@@ -47,10 +82,10 @@ function PostSummary({post}) {
             else
                 alert(response.statusText);
         }
-        catch(error) {
+        catch (error) {
             alert("Error: " + error.message);
         }
-       
+
     }
 
     const getPostScore = async function() {
@@ -157,24 +192,15 @@ function PostSummary({post}) {
 
     useEffect(() => {
         getAuthor();
-        getUserVote();
-        getPostScore();
-    }, []);
-    
-    console.log(userVote);
+    }, [])
+
     
     return (
         <div className="post-summary-container">
-            <NavLink to={process.env.REACT_APP_FRONTEND_URL + "/posts/" + currentPost._id}><h3 className="post-summary">{currentPost.postTitle}</h3></NavLink>
+            <h3 className="post-summary">{post.postTitle}</h3>
             <h4 className="post-summary post-summary-item">By {author && author.username}</h4>
             <h4 className="post-summary post-summary-item">{dateCreated.getFullYear()}-{getNumber(dateCreated.getMonth() + 1)}-{getNumber(dateCreated.getDate())}</h4>
             <p className="post-summary-desc">{content}</p>
-
-            <button onClick={handleLike} className="post-vote-button"><img className="post-vote-button post-vote-img" src={process.env.PUBLIC_URL + `/images/Like_${userVote ? (userVote == 1 ? "enabled" : "disabled") : "disabled"}.png`}/></button>
-            <h4 className="post-vote-score">{postScore && postScore}</h4>
-            <button onClick={handleDislike} className="post-vote-button"><img className="post-vote-button post-vote-img" src={process.env.PUBLIC_URL + `/images/Dislike_${userVote ? (userVote == -1 ? "enabled" : "disabled") : "disabled"}.png`}/></button>
-
-            <h4 className="post-summary post-summary-item post-summary-comments">{currentPost.comments.length} Comments</h4>
         </div>
     )
 }

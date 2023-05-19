@@ -5,7 +5,10 @@ import React, { useEffect, useState } from 'react';
 
 
 
-
+/**
+ * A page that displays the user's profile
+ * @returns The user's profile
+ */
 const UserProfile = () => {
     const location = useLocation()
   const [user, setUser] = useState({})

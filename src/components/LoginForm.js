@@ -1,8 +1,12 @@
 import { useContext, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { LoggedInContext } from "./App";
+import "./App.css"
 
-
+/**
+ * Provides a login form for the user
+ * @returns A login form
+ */
 function LoginForm() {
     const [username, setUsername] = useState(null)
     const [password, setPassword] = useState(null)
@@ -50,7 +54,7 @@ function LoginForm() {
 
 
 return(
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="login">
         <label htmlFor="username">Username</label>
         <input type="text" name="username" placeholder="Username..." onChange={(e)=>setUsername(e.target.value) }/>
 <br/>
@@ -58,8 +62,9 @@ return(
         <input type="password" name="password" placeholder="Password..." onChange={(e)=>setPassword(e.target.value) }/>
 
 
-        <br/>
-        {username && password && <button type="submit">Submit</button>}
+        <br/><br/>
+        {username && password && <button type="submit" class="btn btn-success">Submit</button>}
+        <br/><br/>
     </form>
 )
 }

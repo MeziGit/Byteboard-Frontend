@@ -1,30 +1,22 @@
-import { useContext, useState } from "react"
-import { useNavigate } from "react-router-dom"
-import { LoggedInContext } from "./App";
+import { useState } from "react"
 
 
+/**
+ * Provides a form to change the email of the user 
+ * @returns A form to change the email of the user
+ */
 function EmailChangeForm() {
     const [email, setEmail] = useState(null)
-
-
-    const navigate = useNavigate()
 
     const handleSubmit = async (event) => {
         event.preventDefault()
 
-
-
-
         try {
-
 
             const res = await fetch("http://localhost:1339/session/getUsername",
                 { method: "GET", credentials: "include" });
 
-            if (res.status !== 200) throw new Error("User not logged in")
-
-            const username = await res.text();
-
+            if (res.status !== 200) throw new Error("You are not logged in!")
 
             const password = prompt("Please enter your current password")
 
@@ -32,7 +24,6 @@ function EmailChangeForm() {
                 method: "PUT",
                 credentials: "include",
                 body: JSON.stringify({
-                    usernameToUpdate: username,
                     email: email,
                     currentPassword: password
                 }),
@@ -63,11 +54,12 @@ function EmailChangeForm() {
 
     return (
         <form onSubmit={handleSubmit}>
-            <label htmlFor="email">Email Change: </label>
-            <input type="text" name="email" placeholder="Email..." onChange={(e) => setEmail(e.target.value)} />
+            <label htmlFor="email">Email Change:   </label>
+            <br/>
+            <input type="text" name="email" placeholder="New Email..." onChange={(e) => setEmail(e.target.value)} />
 
 
-            {email && <button type="submit">Submit</button>}
+            {email && <button type="submit" class="btn btn-warning">Submit</button>}
         </form>
     )
 }

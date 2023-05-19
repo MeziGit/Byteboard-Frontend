@@ -1,28 +1,24 @@
-import { useContext, useState } from "react"
-import { useNavigate } from "react-router-dom"
-import { LoggedInContext } from "./App";
+import { useState } from "react"
 import "./App.css"
 
+/**
+ * Provides a forum to create a post
+ * @returns A form to create a post
+ */
 function PostForm() {
     const [title, setTitle] = useState(null)
     const [content, setContent] = useState(null)
-    const[topic,setTopic] = useState(null)
 
-    const navigate = useNavigate()
 
     const handleSubmit = async (event) => {
         event.preventDefault()
 
-
-
-
         try {
-
             let topics = [];
- let checkboxes = document.querySelectorAll("input[type='checkbox']:checked");
- for (let i = 0 ; i < checkboxes.length; i++) {
-  topics.push(checkboxes[i].value)
- }
+            let checkboxes = document.querySelectorAll("input[type='checkbox']:checked");
+            for (let i = 0; i < checkboxes.length; i++) {
+                topics.push(checkboxes[i].value)
+            }
 
 
 
@@ -30,9 +26,9 @@ function PostForm() {
                 method: "POST",
                 credentials: "include",
                 body: JSON.stringify({
-                    title:title,
-                    content:content,
-                    topicNames:topics
+                    title: title,
+                    content: content,
+                    topicNames: topics
 
                 }),
                 headers: {
@@ -63,24 +59,36 @@ function PostForm() {
     return (
 
         <form onSubmit={handleSubmit} className="post" title="Post">
-          <h1>POST</h1>
+            <h1>POST</h1>
             <div>
-<input type="checkbox" id="vehicle1" value="Programming"/>
-<label for="vehicle1" > Programming</label><br/>
-<input type="checkbox" id="vehicle2" value="Hardware"/>
-<label for="vehicle2"> Hardware</label><br/>
-</div>
-<br />
-            <label htmlFor="title">Title: </label>
+      
+                <label for="vehicle1" > <i>Programming</i></label>
+                <input type="checkbox" id="vehicle1" value="Programming"/>
+          
+                <label for="vehicle2"><i> Hardware</i></label>
+                <input type="checkbox" id="vehicle2" value="Hardware" />
+
+                <label for="vehicle3"> <i>Virtual Machines</i></label>
+                <input type="checkbox" id="vehicle3" value="Virtual Machines" />
+                
+                <label for="vehicle4"><i>Networking</i> </label>
+                <input type="checkbox" id="vehicle4" value="Networking" />
+
+                <label for="vehicle5"><i>Other</i></label>
+                <input type="checkbox" id="vehicle5" value="Other" />
+
+            </div>
+
+            <label htmlFor="title">Title: </label><br />
             <input type="text" name="title" placeholder="Title..." onChange={(e) => setTitle(e.target.value)} />
             <br />
 
-            <label htmlFor="title">Content: </label>
+            <label htmlFor="title">Content: </label><br/>
             <input type="text" name="title" placeholder="Content..." onChange={(e) => setContent(e.target.value)} />
             <br />
 
-
-            <button type="submit">Create</button>
+            <br />
+            <button type="submit" class="btn btn-primary">Create</button>
         </form>
     )
 }

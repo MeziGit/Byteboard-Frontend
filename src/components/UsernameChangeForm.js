@@ -1,17 +1,11 @@
-import { useContext, useState } from "react"
-import { useNavigate } from "react-router-dom"
-import { LoggedInContext } from "./App";
-
+import { useState } from "react"
 
 function UsernameChangeForm() {
-    const [username,setUsername] = useState(null)
+    const [username, setUsername] = useState(null)
 
 
     const handleSubmit = async (event) => {
         event.preventDefault()
-
-
-
 
         try {
 
@@ -19,10 +13,7 @@ function UsernameChangeForm() {
             const res = await fetch("http://localhost:1339/session/getUsername",
                 { method: "GET", credentials: "include" });
 
-            if (res.status !== 200) throw new Error("User not logged in")
-
-            const username = await res.text();
-
+            if (res.status !== 200) throw new Error("You are not logged in!")
 
             const password = prompt("Please enter your current password")
 
@@ -30,8 +21,7 @@ function UsernameChangeForm() {
                 method: "PUT",
                 credentials: "include",
                 body: JSON.stringify({
-                    usernameToUpdate: username,
-                    username:username,
+                    username: username,
                     currentPassword: password
                 }),
                 headers: {
@@ -62,10 +52,10 @@ function UsernameChangeForm() {
     return (
         <form onSubmit={handleSubmit}>
             <label htmlFor="username">Username Change: </label>
+            <br/>
             <input type="text" name="username" placeholder="New Username..." onChange={(e) => setUsername(e.target.value)} />
 
-
-            {username && <button type="submit">Submit</button>}
+            {username && <button type="submit" class="btn btn-warning">Submit</button>}
         </form>
     )
 }

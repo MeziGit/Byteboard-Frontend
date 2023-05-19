@@ -4,6 +4,11 @@ import { useLocation } from "react-router-dom";
 
 
 /** The error boundary has a function component wrapper.  */
+/**
+ * The error boundary is a functional component that wraps the class component.
+ * @param {object} props The children and the fallback component
+ * @returns The error boundary
+ */
 function ErrorBoundary({ children, fallback }) {
     const [hasError, setHasError] = useState(false);
     const location = useLocation();

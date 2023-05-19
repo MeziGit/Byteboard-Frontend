@@ -1,49 +1,43 @@
-import { DisplayComment } from "./CommentForm"
-import { DisplayPost } from "./DisplayPost"
-import { DisplayUser } from "./DisplayUser"
+import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
+import { DisplayComment } from "./DisplayComment"
+
+/**
+ * Fetches and returns all the comments in a list
+ * @param {Object} props
+ * @returns A list of comments
+ */
+function ListCommentsPost({ comments }) {
+    const navigate = useNavigate()
 
 
-function ListCommentsPost({comments})
-{
-const navigate = useNavigate()
-try{
+    try {
 
+        for (let i = 0; i < comments.length; i++) {
+            if (comments[i] == null) {
+                comments.splice(1, i)
+            }
+        }
 
+        return (
+            <div>
 
-for(let i =0;i<comments.length;i++)
-{
-if(comments[i] == null)
-{
-    comments.splice(1,i)
-}
-}
+                <ul>
+                    {comments.map((comment) => (
 
-    return(
-        <div>
+                        <h2>{<DisplayComment id={comment.authorId} comment={comment.content} />}</h2>
 
-<ul>
-                {comments.map((comment) =>(
-                   
-                
-                   
-                    <h2>user: -{comment.content}</h2>
-                    
-                   
-
-              
-                ))}
+                    ))}
                 </ul>
-            
-        </div>
-    )
-                }
-                catch(error)
-                {
-                   
-                    navigate("/usererror", { state: { errorMessage: error.message} })
-                }
+
+            </div>
+        )
+    }
+    catch (error) {
+
+        navigate("/usererror", { state: { errorMessage: error.message } })
+    }
 }
 
 
-export {ListCommentsPost}
+export { ListCommentsPost }

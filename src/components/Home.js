@@ -2,6 +2,10 @@ import { AllUsers } from "./AllUsers";
 import { PostForm } from "./PostForm";
 import { AllPosts } from "./AllPosts";
 
+/**
+ * The home page for the website
+ * @returns The home page
+ */
 function Home() {
 
     return (
@@ -15,7 +19,7 @@ function Home() {
 
                 <PostForm />
 
-               <AllPosts/>
+                <AllPosts />
 
             </div>
         </div>

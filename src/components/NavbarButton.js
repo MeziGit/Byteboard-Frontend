@@ -4,6 +4,7 @@ import styled from "@emotion/styled";
 
 const body = getComputedStyle(document.body);
 
+//color details
 const ColourButton = styled(Button)(({ theme }) => ({
     backgroundColor: body.getPropertyValue('--colour-primary'),
     color: "white",
@@ -18,7 +19,12 @@ const ColourButton = styled(Button)(({ theme }) => ({
   }));
 
 
-
+/**
+ * Navigation bar button
+ * @param {function} props.onClick The function to call when the button is clicked
+ * @param {string} props.buttonText The text to display on the button
+ * @returns A button for the navbar
+ */
 function NavbarButton(props) {
     return (
         <ColourButton className="btn-navbar" onClick={props.onClick}>{props.buttonText}</ColourButton>

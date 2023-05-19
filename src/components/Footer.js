@@ -1,6 +1,10 @@
 import React from "react";
 import "./App.css";
 
+/**
+ * Provides a basic footer for the page
+ * @returns The footer of the page
+ */
 function Footer() {
     return (
         <div className="footer">
