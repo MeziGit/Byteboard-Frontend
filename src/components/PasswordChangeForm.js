@@ -60,6 +60,7 @@ function PasswordChangeForm() {
     return (
         <form onSubmit={handleSubmit}>
             <label htmlFor="currentPassword">Password Change: </label>
+            <br/>
             <input type="password" name="currentPassword" placeholder="New Password..." onChange={(e) => setPassword(e.target.value)} />
 
 

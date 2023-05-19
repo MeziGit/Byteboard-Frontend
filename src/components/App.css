@@ -189,7 +189,8 @@ align-items: center;
   outline: 10px solid;
   outline-color: rgb(0, 50, 110);
   max-width: 500px;
-  height: 200px;
+  height: 300px;
+  margin-bottom: 3em;
 
 }
 .post {

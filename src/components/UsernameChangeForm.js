@@ -55,6 +55,7 @@ function UsernameChangeForm() {
     return (
         <form onSubmit={handleSubmit}>
             <label htmlFor="username">Username Change: </label>
+            <br/>
             <input type="text" name="username" placeholder="New Username..." onChange={(e) => setUsername(e.target.value)} />
 
             {username && <button type="submit" class="btn btn-warning">Submit</button>}
