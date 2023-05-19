@@ -61,7 +61,7 @@ const Profile = () => {
       )}
 
       <UpdateDescriptionForm />
-      {user && <AllPostsFromUser user={user} />}
+      {user && <AllPostsFromUser user={user} update={true}/>}
 
     </div>
   )

@@ -42,7 +42,7 @@ function AllPosts({deleteAdmin}) {
                 {posts.map((post) => (
 
 
-                    <PostSummary post={post} deletePost={deleteAdmin} />
+                    <PostSummary post={post} deletePostAdmin={deleteAdmin} />
 
 
 

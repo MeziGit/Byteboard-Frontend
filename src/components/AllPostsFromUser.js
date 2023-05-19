@@ -32,7 +32,7 @@ function AllPostsFromUser(props) {
     <>
       <button onClick={callGetAllPosts}>See Posts</button>
 
-      <ListPosts posts={posts} />
+      <ListPosts posts={posts} deleteUpdate={props.update} />
     </>
   )
 }

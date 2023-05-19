@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom"
 import PostSummary from "./PostSummary"
 
 
-function ListPosts({ posts }) {
+function ListPosts({ posts,deleteUpdate }) {
     const navigate = useNavigate()
     try {
 
@@ -13,7 +13,7 @@ function ListPosts({ posts }) {
                 {posts.map((post) =>(
                    
                 
-                    <PostSummary post={post} deletePost={true} updatePost={true}/>
+                    <PostSummary post={post} deletePost={deleteUpdate} updatePost={deleteUpdate}/>
                    
                 ))}
 
