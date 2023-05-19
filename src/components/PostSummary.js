@@ -300,7 +300,7 @@ function PostSummary({ post, deletePost, updatePost,deletePostAdmin }) {
             <br /><br/>
             <CommentForm id={post._id} />
             <br /><br />
-            {deletePost && <button type="button" class="btn btn-warning" onClick={handleDelete}>Delete Post</button>}
+            
 
             <br />
             {updatePost && <label htmlFor="titleUpdate">Update Title:   </label>}
@@ -315,6 +315,10 @@ function PostSummary({ post, deletePost, updatePost,deletePostAdmin }) {
             {updatePost && <input type="text" name="contentUpdate" placeholder="New Content..." onChange={(e) => setContentUpdate(e.target.value)} />}
             <br /><br />
             {contentUpdate && <button type="button" onClick={handleContent} class="btn btn-info">Update</button>}
+
+<br/><br/>
+            {deletePost && <button type="button" class="btn btn-warning" onClick={handleDelete}>Delete Post</button>}
+
 
             {deletePostAdmin && <DeletePostAdmin />}
         </div>
