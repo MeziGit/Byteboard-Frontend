@@ -53,4 +53,4 @@ function DeletePostAdmin({postId}) {
     )
 }
 
-export default DeletePostAdmin
+export {DeletePostAdmin}

@@ -6,13 +6,14 @@ import { NavLink } from "react-router-dom";
 import { LoggedInContext } from "./App";
 import { ListTopics } from "./ListTopics";
 import { CommentForm } from "./CommentForm";
+import {DeletePostAdmin} from "./DeletePostAdmin"
 const MAX_CONTENT_LENGTH = 300;
 
 
 /**
  * Represents a summary of a post
  */
-function PostSummary({ post, deletePost, updatePost }) {
+function PostSummary({ post, deletePost, updatePost,deletePostAdmin }) {
     const [isLoggedIn, setIsLoggedIn] = useContext(LoggedInContext);
     const [author, setAuthor] = useState(null);
     const [userVote, setUserVote] = useState(null);
@@ -314,6 +315,8 @@ function PostSummary({ post, deletePost, updatePost }) {
             {updatePost && <input type="text" name="contentUpdate" placeholder="New Content..." onChange={(e) => setContentUpdate(e.target.value)} />}
             <br /><br />
             {contentUpdate && <button type="button" onClick={handleContent} class="btn btn-info">Update</button>}
+
+            {deletePostAdmin && <DeletePostAdmin />}
         </div>
     )
 }
