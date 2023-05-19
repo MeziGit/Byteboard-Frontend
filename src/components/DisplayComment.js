@@ -11,6 +11,14 @@ function DisplayComment({commentId})
     const [comment, setComment] = useState(null);
     const [author, setAuthor] = useState(null);
 
+    const dateCreated = comment ? new Date(comment.dateCreated) : null;
+    const dateEdited = comment ? (comment.dateEdited ? new Date(comment.dateEdited) : null) : null;
+
+
+    const getNumber = function(num) {
+        return num > 10 ? num.toString() : "0" + num.toString(); 
+    }
+
     const getAuthor = async function(currentComment) {
         const requestOptions = {
             method: "GET",
@@ -55,6 +63,10 @@ function DisplayComment({commentId})
 
                 getAuthor(real);
             }
+            else {
+                console.error(result.statusText, commentId);
+            }
+                
         }
         catch(error) {
             console.log(error);
@@ -68,8 +80,12 @@ function DisplayComment({commentId})
     return (
         <div className="comment-container">
             {comment && <>
-                <h2>{author && author.username}</h2>
-                <h3>{comment.content}</h3>
+                <div className="comment">
+                    <h3 className="comment comment-author">{author && author.username}</h3>
+                    <h4 className="comment comment-item">{dateCreated && dateCreated.getFullYear()}-{getNumber(dateCreated.getMonth() + 1)}-{getNumber(dateCreated.getDate())}</h4>
+                    {dateEdited && <h4 className="comment comment-item">(Edited {dateEdited.getFullYear()}-{getNumber(dateEdited.getMonth() + 1)}-{getNumber(dateEdited.getDate())})</h4>}
+                </div>
+                <h3 className="comment-desc">{comment.content}</h3>
             </>}
         </div>
     )

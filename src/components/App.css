@@ -346,6 +346,27 @@ width: 30em;
   outline-offset: var(--outline-offset-primary);
 }
 
+.comment {
+  display: inline !important;
+  padding-right: 1rem;
+  text-align: left;
+}
+
+.comment-author {
+  font-size: 2.2rem !important;
+}
+
+.comment-desc {
+  color: var(--colour-tertiary);
+  font-family: var(--font-secondary);
+}
+
+.comment-item {
+  color: var(--colour-tertiary);
+  font-family: var(--font-secondary);
+  padding-left: 2rem;
+}
+
 
 .home {
   display: flex;
