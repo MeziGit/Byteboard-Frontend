@@ -18,6 +18,9 @@ Required modules:
 generate JsDoc
 - npm run doc
 
+get all modules: 
+- npm i
+
 IMPORTANT:
 
 Make a .env file in the same level as package.json and put this in it:
