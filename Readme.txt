@@ -17,3 +17,8 @@ Required modules:
 
 generate JsDoc
 - npm run doc
+
+IMPORTANT:
+
+Make a .env file in the same level as package.json and put this in it:
+REACT_APP_PUBLIC_URL="http://localhost1339"
