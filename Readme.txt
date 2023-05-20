@@ -17,3 +17,6 @@ Required modules:
 
 generate JsDoc
 - npm run doc
+
+get all modules: 
+- npm i
