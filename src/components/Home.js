@@ -20,7 +20,7 @@ function Home() {
         let result = await res.json()
     
     
-        if(result.username == "admin")
+        if(result.admin)
         {
             setDeleteAdmin(true)
         }

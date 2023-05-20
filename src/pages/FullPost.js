@@ -3,9 +3,12 @@ import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
 import { useState } from "react";
 import { useContext } from "react";
+import { useRef } from "react";
 import { LoggedInContext } from "../components/App";
 import DisplayComment from "../components/DisplayComment";
 import { NavLink } from "react-router-dom";
+import { PostForm } from "../components/PostForm";
+import FormUpdatePost from "../components/FormUpdatePost";
 
 /**
  * Represents a full post with comments
@@ -17,6 +20,8 @@ function FullPost() {
     const [author, setAuthor] = useState(null);
     const [userVote, setUserVote] = useState(null);
     const [postScore, setPostScore] = useState(null);
+    const [canEditPost, setCanEdit] = useState(false);
+    const [isEditing, setEditing] = useState(false);
 
 
     const dateCreated = post ? new Date(post.dateCreated) : new Date();
@@ -104,6 +109,8 @@ function FullPost() {
                 else
                     setUserVote(0);
                 setIsLoggedIn(true);
+                
+                setCanEdit(user.admin || user._id == fetchedPost.authorId);
             }
             else {
                 setUserVote(0);
@@ -183,6 +190,24 @@ function FullPost() {
         }
     }
 
+    const handleEdit = async function() {
+        try {
+            setEditing(true);
+        }
+        catch(error) {
+            console.error(error);
+        }
+    }
+
+    const handleCancel = async function() {
+        try {
+            setEditing(false);
+        }
+        catch(error) {
+            console.error(error);
+        }
+    }
+
 
     useEffect(() => {
         retrievePost();
@@ -196,8 +221,9 @@ function FullPost() {
                         <h1 className="post-real">{post.postTitle}</h1><br/>
                         <h3 className="post-real post-item">By {author && author.username}</h3>
                         <h3 className="post-real post-item">{dateCreated.getFullYear()}-{getNumber(dateCreated.getMonth() + 1)}-{getNumber(dateCreated.getDate())}</h3>
-                        {dateEdited && <h3 className="post-real post-item">(Edited {dateEdited.getFullYear()}-{getNumber(dateEdited.getMonth() + 1)}-{getNumber(dateEdited.getDate())})</h3>}
+                       
                         <h3 className="post-desc">{content}</h3>
+
 
                         <button onClick={handleLike} className="post-vote-button"><img className="post-vote-button post-vote-img" src={process.env.PUBLIC_URL + `/images/Like_${userVote ? (userVote == 1 ? "enabled" : "disabled") : "disabled"}.png`}/></button>
                         <h4 className="post-vote-score">{postScore && postScore}</h4>
@@ -217,4 +243,6 @@ function FullPost() {
     )
 }
 
+
+// {dateEdited && <h3 className="post-real post-item">(Edited {dateEdited.getFullYear()}-{getNumber(dateEdited.getMonth() + 1)}-{getNumber(dateEdited.getDate())})</h3>}
 export default FullPost;

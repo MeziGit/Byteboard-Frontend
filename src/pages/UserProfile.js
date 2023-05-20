@@ -10,31 +10,28 @@ import React, { useEffect, useState } from 'react';
  * @returns The user's profile
  */
 const UserProfile = () => {
-    const location = useLocation()
+  const location = useLocation()
   const [user, setUser] = useState({})
 
-const getUser = async() =>
-{
-  try
-  {
+  const getUser = async () => {
+    try {
 
-    const username = location.pathname.split("/")[2]
+      const username = location.pathname.split("/")[2]
 
 
-    fetch(`${process.env.REACT_APP_PUBLIC_URL}/users/usernames/${username}`)
-      .then(response => {
-        return response.json()
-      })
-      .then(data => {
-        setUser(data)
-      })
+      fetch(`${process.env.REACT_APP_PUBLIC_URL}/users/usernames/${username}`)
+        .then(response => {
+          return response.json()
+        })
+        .then(data => {
+          setUser(data)
+        })
     }
-    catch(error)
-    {
-        alert(error.message)
+    catch (error) {
+      alert(error.message)
     }
 
-}
+  }
 
 
   useEffect(() => {

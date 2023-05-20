@@ -43,7 +43,7 @@ function RegisterForm() {
 
                 if (response.status === 200) {
 
-                    alert("Successfull register")
+                    alert("Registered sucessfully")
 
                     navigate("/")
                 }
